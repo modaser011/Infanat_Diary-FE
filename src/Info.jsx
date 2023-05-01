@@ -4,6 +4,7 @@ import {Row,Card} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import d from './info.module.css'
 import Zoom from 'react-reveal/Zoom';
+import Slider from './Slider';
 const Info = ({infox}) => {
     const datax=infox.map(({info},idx)=>(
        <Col className='col-12 col-sm-6 col-md-4 col-lg-4 mb-2 mt-5 col-xxl-2 col-xl-3' key={idx}  id={d.col}>
@@ -20,6 +21,7 @@ const Info = ({infox}) => {
     )
     return (
         <Container className='justify-content-center ' id={d.cont}>
+          <Slider/>
           <Zoom>  
             <Row className='justify-content-start align-content-center'id={d.cont} >
               {datax}

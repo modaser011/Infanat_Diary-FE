@@ -16,7 +16,7 @@ function MyNavbar({r}) {
   const toggleShow = () => setShow((s) => !s);
 
   const datax=r.map(({png,id,link},idx)=>(
-  <Link to={link} style={{textDecoration:'none'}}> <button style={{width:'100%',color:id==="Logout"?'red':'black', textDecoration:'none'}} key={idx} 
+  <Link to={link} style={{textDecoration:'none'}}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
    className="mb-3 d-flex align-items-center" 
    variant="primary" 
    type="submit"
@@ -24,18 +24,17 @@ function MyNavbar({r}) {
    id={d.buttun2}>
     <img src={png} className="me-4" width="20" height="20" alt=""/>
     <h4 style={{fontWeight:"600"}}>{id}</h4>        
-    </button></Link>
+    </button>
+    </Link>
  )
  )
- 
-
   return (
     
     <Navbar expand="lg" className="mb-4 mb-md-0 sticky-top" id={d.cont} >   
       <Container fluid>
         <div className="d-flex">
-       <button variant="primary"style={{border:"none" ,backgroundColor:'#fdfdfd'}}onClick={toggleShow} className="me-2">
-      <img src="menu.png" width="30" height="30"
+       <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
+      <img src="clipart282138.png" width="30" height="30"
               className="d-inline-block align-top" alt=""/>
       </button> 
      <Fade left>
@@ -49,7 +48,7 @@ function MyNavbar({r}) {
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Link to="/"><img src="Logo ()(1).png" width="80" height="80"
+      <Bounce top><Link to="/"><img src="Logo ()(1).png" width="90" height="90"
               className="d-inline-block align-top" alt=""/> </Link></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll basic-navbar-nav me-auto ">
@@ -57,7 +56,7 @@ function MyNavbar({r}) {
             className="my-2 my-lg-0 me-auto"
             navbarScroll>
           </Nav>
-            <Link to="/signup"><button id={d.btn} className="me-3 btn" variant="primary">Sign up</button></Link>
+            <Link to="/RegisterParent"><button id={d.btn} className="me-3 btn" variant="primary">Sign up</button></Link>
             <Link to="/login"><button  id={d.btn}className="me-3 btn" variant="primary">Login</button></Link>
         </Navbar.Collapse>
       </Container>

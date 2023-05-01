@@ -40,16 +40,16 @@ e.preventDefault();
    <h3>Set New Password</h3>
    </div>
       <Form className="text-center" id={d.formx} onSubmit={validate}>
- <Form.Group className="mb-3" controlId="formBasicPassword" id={d.coll2}>
+ <Form.Group className="mb-3" id={d.coll2}>
       <Form.Control type="password"  placeholder="Enter New Password" required value={Password} onChange={(e)=>setPassword(e.target.value)} id={d.controlx} x="true"/>
          <Form.Label id={d.label} class="form-control-placeholder transition">New Password</Form.Label>
  </Form.Group>
-    <Form.Group className="mb-3" controlId="formBasicCheckbox" id={d.coll2}>
+    <Form.Group className="mb-3" id={d.coll2}>
     <Alert key="danger" variant="danger" style={{display:(error3==="")?"none":"block"}}  id={d.vv}>
       {error3}
         </Alert>
 </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword" id={d.coll2} >
+      <Form.Group className="mb-3" id={d.coll2} >
       <Form.Control type="password" placeholder="confirm New Password" required  value={confirmPassword} x="true"
        onChange={(e)=>setConfirmPassword(e.target.value)} id={d.controlx}/>   
           <Form.Label id={d.label} class="form-control-placeholder transition">Confirm Password</Form.Label>
@@ -57,7 +57,7 @@ e.preventDefault();
   {error}
         </Alert> 
     </Form.Group>       
-       <Form.Group className="mb-3" controlId="formBasicPassword" id={d.coll2} >
+       <Form.Group className="mb-3" id={d.coll2} >
 
     <button className="mb-3 btn" variant="primary" type="submit" id={d.buttun}>Reset Password</button>
         </Form.Group>
