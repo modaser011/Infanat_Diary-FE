@@ -1,0 +1,36 @@
+#cont {
+    justify-content: center;
+    place-items: center center;
+    font-weight: 900;
+    max-width: 100vw;
+    min-height: 91.4vh;
+}
+
+#card {
+    background-color: rgb(218, 217, 217);
+    width: 90%;
+    box-shadow: 3px 3px 3px 3px #d3d2d2;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    overflow-x: hidden;
+    border-radius: 1.5rem;
+}
+
+@media (max-width: 575.98px) {
+    #hh {
+        text-align: center;
+    }
+}
+
+#col {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+#link {
+    text-decoration: none;
+    color: black;
+}
