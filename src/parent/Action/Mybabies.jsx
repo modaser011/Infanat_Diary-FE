@@ -6,7 +6,7 @@ const Mybabies = ({data}) => {
           return (
             <Container className='justify-content-center'id={d.cont} >
            {data.length >=1?<AddBaby/>:<div></div>}
-              <Row className='justify-content-start align-content-center'id={d.cont} >
+              <Row className='justify-content-start align-content-center' >
       {data.length >=1?<h1 style={{marginBottom:'-1rem'}} id={d.hh} className='ms-sm-4 '>All my Babies</h1>:<p></p>}
                 {data.length >=1? data.map(({name,birthData,gender,weight,headDiameter,height},idx)=>(
      <Col className='col-12 col-sm-6 col-md-4 col-lg-4 mb-2 mt-5 col-xxl-2 col-xl-3' key={idx}  id={d.col}>
@@ -41,7 +41,7 @@ const Mybabies = ({data}) => {
       <p className='text center'>you don't have any Babies<AddBaby/></p>
      }
               </Row>
-              
+
           </Container>      );
           }
 export default Mybabies;

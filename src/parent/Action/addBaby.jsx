@@ -5,7 +5,9 @@ import {Alert,Button} from 'react-bootstrap';
 import d from './babies.module.css'
 import {useNavigate} from "react-router-dom";
 import AddBabyValidate from './addBabyValidate';
+import axios from 'axios';
 const AddBaby = () => {
+  const nav=useNavigate()
   const [show, setShow] = useState(false);
     const [vals,setVals]=useState({name:'',
     birthDate:'',
@@ -31,6 +33,15 @@ const AddBaby = () => {
     let xc=AddBabyValidate(vals)
      if(xc.name==='')
      {
+      var json = JSON.stringify(vals)
+      axios.post('https://infant-diary-backend.onrender.com/api/v1/parent/addChild', json,{headers:{'Content-Type':'application/json'}})
+      .then(res=>{
+        if(res.status === 200) {
+          nav('/');
+      } else {
+          console.log(res.data.Error);
+      }      })
+      .catch(err => alert(err.response.data.message));
       setShow(false)
      } 
     }
@@ -73,8 +84,8 @@ const AddBaby = () => {
 <Form.Group className="mb-3" controlId="formBasicPassword" id={d.coll2} >
 <Form.Select id={d.controlx} aria-label="Default select example" value={vals.gender} name='gender' onChange={handleInput} required> 
 <option value="" disabled>Select Gender</option>
-<option value="Doctor">Male</option>
-<option value="Parent">Female</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
 </Form.Select>
 </Form.Group>
 

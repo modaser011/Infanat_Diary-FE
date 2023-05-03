@@ -1,17 +1,17 @@
 function ParentValidate(vals){
     let errors={}
     
-    const letter = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/.test(vals.username);
+    const letter = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/.test(vals.name);
     
     
     
-    if((vals.username.length >= 8 && vals.username.length <= 15)&&letter)
+    if((vals.name.length >= 8 && vals.name.length <= 15)&&letter)
   {
-   errors.username=""
+   errors.name=""
   }
   else 
   {
-    errors.username="Username must be from 8 to 15 char";
+    errors.name="Username must be from 8 to 15 char";
   }
     const capsLetterCheck = /[A-Z]/.test(vals.Password);
     const numberCheck = /[0-9]/.test(vals.Password);

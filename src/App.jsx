@@ -17,6 +17,7 @@ import RegisterDoctor from "./Forms/register/Doctor/registerDoctor";
 import { RegisterHos } from "./Forms/register/Hospiatal/registerHos";
 import './App.css';
 function App(){
+  //get all movies by axios 
   const infox=[{info:'feeding'},{info:'sleeping'},
   {info:'sleeping'},{info:'feeding'},{info:'feeding'},{info:'feeding'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'},{info:'sleeping'},{info:'feeding'}]
   const r=[

@@ -31,7 +31,7 @@ function MyNavbar({r}) {
   return (
     
     <Navbar expand="lg" className="mb-4 mb-md-0 sticky-top" id={d.cont} >   
-      <Container fluid>
+      <Container>
         <div className="d-flex">
        <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
       <img src="clipart282138.png" width="30" height="30"

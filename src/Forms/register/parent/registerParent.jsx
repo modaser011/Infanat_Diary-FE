@@ -13,7 +13,8 @@ export function RegisterParent()
   const nav=useNavigate()
  
 
-  const [vals,setVals]=useState({username:'',
+  const [vals,setVals]=useState(
+  {name:'',
   Password:'',
   email:'',
   confirmPassword:'',
@@ -29,16 +30,21 @@ export function RegisterParent()
 e.preventDefault();
 setErrors(ParentValidate(vals)) 
 let xc=ParentValidate(vals)
- if(xc.username===""&&xc.Password===""&&xc.confirmPassword==="")
- try{
- axios.post('http://localhost:3000/api/v1/parent/signup',vals)
-//nav('/')
+ if(xc.name===""&&xc.Password===""&&xc.confirmPassword==="")
+ {
+ var json = JSON.stringify(vals)
+ console.log(json)
+ axios.post('http://localhost:8081/login', json)
+ .then(res => {
+     if(res.data.Status === 'Success') {
+         nav('/');
+     } else {
+         console.log(res.data.Error);
+     }
+ })
+ .catch(err => console.log(err));
+  }
 }
-catch(err){
-  alert(err.response)
-  alert(err.response.status)
-}
-}  
  return (
   <Container id={d.cont} className="justify-content-center align-content-center">
   <Row className="justify-content-between align-items-center bg-white pb-5"id={d.cont2}  > 
@@ -54,7 +60,7 @@ catch(err){
    <Col lg={true} id={d.coll} className="col-md-7 pt-md-5">
       <Form className="text-center mx-sm-5 " onSubmit={validate}>
   <Form.Group className="mb-2" id={d.coll2}>
-        <Form.Control type="text"placeholder="Enter Username" required onChange={handleInput} id={d.controlx} value={vals.username}  x="true" name="username"/>
+        <Form.Control type="text"placeholder="Enter Username" required onChange={handleInput} id={d.controlx} value={vals.name}  x="true" name="name"/>
               <Form.Label id={d.label}  class="form-control-placeholder transition">Full Name</Form.Label>
               {errors.username && <Alert key="danger" variant="danger" id={d.v}>{errors.username}</Alert>}
   

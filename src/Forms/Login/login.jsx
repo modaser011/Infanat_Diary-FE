@@ -8,23 +8,25 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 export function Login()
-{ 
+{
  const nav=useNavigate()
-  const[Password,setPassword]=useState("");
-  const[email,setEmail]=useState("");
+  const[password,setPassword]=useState("");
+  const[email,setEmail]=useState(""); 
   const validate=(e)=>{
-    
-      const url=''
-      const data=[{email:email,
-        Password:Password,}]
-        try{
-axios.post(url,data)
-nav=("/")
+    e.preventDefault();
+    const vals={email:email,
+    password:password,}
+    var json = JSON.stringify(vals)
+axios.post('https://infant-diary-backend.onrender.com/api/v1/parent/signin', json,{headers:{'Content-Type':'application/json'}})
+.then(res=>{
+  if(res.status === 200) {
+    nav('/');
+} else {
+    console.log(res.data.Error);
+}      })
+.catch(err => alert(err.response.data.message));
 }
-catch(err){console.log(err.response)
-  console.log(err.response.status)
-}
-  }
+
  return (
   <Container fluid id={d.cont} className="justify-content-center mt-sm-5 mt-xs-5 mt-md-5 mt-xxl-5">
   <Row className=" justify-content-between pb-5" id={d.cont}>
@@ -40,7 +42,7 @@ catch(err){console.log(err.response)
           <Form.Label id={d.label}  class="form-control-placeholder transition">Email address</Form.Label>
 </Form.Group>
  <Form.Group className="mb-2"  id={d.coll2} >
-      <Form.Control type="password"  placeholder="Password" required value={Password} onChange={(e)=>setPassword(e.target.value)} id={d.controlx} x="true"/>
+      <Form.Control type="password"  placeholder="Password" required value={password} onChange={(e)=>setPassword(e.target.value)} id={d.controlx} x="true"/>
          <Form.Label id={d.label}  class="form-control-placeholder transition">Password</Form.Label>    
         <p className="text-end" id={d.p} ><Link to="/forget" id={d.p}>Fotget Password?</Link></p> 
 </Form.Group>
