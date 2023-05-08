@@ -1,0 +1,80 @@
+.vaccinedetails__container{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 1rem;
+}
+.vaccinedetails{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-start;
+}
+
+.vaccinedetails__left{
+    flex: 1;
+}
+
+.vaccinedetails__image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.vaccinedetails__ageDoseComp{
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    gap: 10px;
+}
+
+.vaccinedetails__right{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.vaccinedetails__infoInside{
+    text-align: start;
+    color: rgb(114, 114, 114);
+    font-weight: 500;
+    font-size: large;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 0.3rem;
+}
+
+.vaccinedetails__infoInside > span{
+    color: #006AD4;
+    font-weight: bold;
+}
+
+.vaccinedetails__header{
+    font-weight: 400;
+}
+
+.vaccinedetails__info{
+    text-align: start;
+    color: rgb(114, 114, 114);
+    font-weight: 500;
+    font-size: large;
+}
+
+.vaccinedetails__info > span{
+    color: #006AD4;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    .vaccinedetails{
+        flex-direction: column;
+    }
+}
