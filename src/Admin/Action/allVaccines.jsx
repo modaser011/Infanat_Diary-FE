@@ -9,6 +9,7 @@ const AllVaccines = ({vacc,temp3,filter}) => {
     const z=temp3.map((e,idx)=>(
         <Button className='justify-content-center text-center me-3 mt-5' key={idx} onClick={()=>filter(e)}>{e}</Button>
       ))
+      console.log(z)
      return (
          <Container className='justify-content-center ' id={d.cont}>
             {vacc.length >=1?<AddVaccine/>:<div></div>}

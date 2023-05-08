@@ -7,9 +7,10 @@ const Slider = () => {
         
       <Carousel.Item className='justify-content-center text-center m-auto'>
         <img
-        src="Logo ()(1).png "
-          className="d-block w-50 h-50 justify-content-center text-center m-auto"
-          alt="First slide"
+        src="4fc97261-28f4-40ac-8b34-ae996326af4d.png"
+          className="d-block justify-content-center text-center m-auto"
+          style={{}}
+          alt="First slide" 
         />
         <Carousel.Caption>
           <h5>First slide label</h5>

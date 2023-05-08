@@ -31,9 +31,9 @@ e.preventDefault();
 
 }
  return (
-   <Container fluid id={d.cont} className="justify-content-center">
-   <Row className=" justify-content-center" id={d.cont}> 
-   <Col className="col-md-8  col-lg-6  justify-content-center text-center pb-md-3 "> 
+  <Container id={d.cont} className="justify-content-center align-content-center justify-content-center me-5 mt-sm-5 mt-xs-5 justify-content-center align-item-center text-center d-flex">
+  <Row className=" justify-content-center container"> 
+  <Col id={d.coll} className="col-md-7 pt-md-5 my-auto mx-auto">
    <div className="justify-content-center mb-5 text-center"> 
    <img src="Password.png" style={{width:"40px",height:"40px"}} alt="" /> 
    <br/>

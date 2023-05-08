@@ -23,7 +23,7 @@ const Info = ({infox}) => {
         <Container className='justify-content-center ' id={d.cont}>
           <Slider/>
           <Zoom>  
-            <Row className='justify-content-start align-content-center'id={d.cont} >
+            <Row className='justify-content-start mx-auto align-content-center container '>
               {datax}
             </Row>
             </Zoom>

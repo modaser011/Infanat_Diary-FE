@@ -2,7 +2,7 @@
     justify-content: center;
     place-items: center center;
     max-width: 100vw;
-    min-height: 89.5vh;
+    min-height: 100vh;
     margin-top: 3rem;
 }
 
@@ -18,11 +18,11 @@
 }
 
 #table {
-    background-color: #EEEE;
+    background-color: #ffffffee;
     text-align: start;
     align-items: center;
     place-items: center center;
-    border: 1px white;
+    box-shadow: 3px 3px 3px 3px #e2e1e1;
 }
 
 #img {

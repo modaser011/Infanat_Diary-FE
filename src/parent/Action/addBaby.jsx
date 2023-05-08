@@ -49,10 +49,10 @@ const AddBaby = () => {
         <div className='mt-3 mb-3 text-center '><Button variant="primary" onClick={handleShow} id={d.btn2}>
         Add new Baby      
        </Button>
-<Modal show={show} onHide={handleClose}>
+<Modal show={show} onHide={handleClose} className='my-auto'>
  <Modal.Header style={{border:'none'}} closeButton>
  </Modal.Header>
- <Modal.Body>
+ <Modal.Body className='my-auto'>
  <Form className="text-center mx-sm-5"onSubmit={validate} >
 <Form.Group className="mb-2" id={d.coll2}>
  <Form.Control type="text" value={vals.name} placeholder="Enter Username" required onChange={handleInput} id={d.controlx} name='name' x="true"/>

@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import {Alert,Button} from 'react-bootstrap';
 import d from './addVac.module.css'
 import AddVacValidate from './addVacValidate';
+import axios from "axios";
+
 const AddVaccine = () => {
     const [show, setShow] = useState(false);
     const[compulsory,setCompulsory]=useState('')
@@ -23,16 +25,25 @@ const AddVaccine = () => {
     const validate=(e)=>
     {
   e.preventDefault();
-  setErrors(AddVacValidate(vals)) 
+  setErrors(AddVacValidate(vals))    
+  const allvals=vals
+  allvals.compulsory=compulsory;
+  var json = JSON.stringify(allvals)
+  console.log(json)
   let xc=AddVacValidate(vals)
    if(xc.name==='')
    {
+    axios.post('https://infant-diary-backend.onrender.com/api/v1/vaccine',json,{headers:{'Content-Type':'application/json'}})
+ .then(res=>{
+  if(res.status === 200){
     setShow(false)
-    const allvals=vals
-allvals.compulsory=compulsory;
-console.log(allvals)
+} else {
+    alert(res.data.Error);
+}      })
+.catch(err => alert(err.response.data.message))
+  }
    }
-    }
+    
     return (
         <div className='mt-3 mb-3 text-center '><Button variant="primary" onClick={handleShow} id={d.btn2}>
         Add new Vaccine      
@@ -60,7 +71,7 @@ console.log(allvals)
 </Form.Group>
 
 <Form.Group className="mb-3" controlId="formBasicPassword" id={d.coll2} >
-<Form.Select id={d.controlx} aria-label="Default select example" value={compulsory} onChange={(e)=>setCompulsory((e.target.value=='Elective')?false:true)} required> 
+<Form.Select id={d.controlx} aria-label="Default select example" value={compulsory} onChange={(e)=>setCompulsory((e.target.value==='Elective')?'No':'Yes')} required> 
 <option value="" disabled>Select Compalsory</option>
 <option value="Doctor">Mandatory</option>
 <option value="Parent">Elective</option>

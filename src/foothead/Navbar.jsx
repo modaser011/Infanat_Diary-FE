@@ -30,11 +30,11 @@ function MyNavbar({r}) {
  )
   return (
     
-    <Navbar expand="lg" className="mb-4 mb-md-0 sticky-top" id={d.cont} >   
+    <Navbar expand="lg" className="mb-4 mb-md-0" id={d.cont} >   
       <Container>
         <div className="d-flex">
-       <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
-      <img src="clipart282138.png" width="30" height="30"
+       <button variant="primary"style={{border:"none" ,backgroundColor:'#F5F7FD'}}onClick={toggleShow} className="me-2">
+      <img src="menu.png" width="30" height="30"
               className="d-inline-block align-top" alt=""/>
       </button> 
      <Fade left>
@@ -48,7 +48,7 @@ function MyNavbar({r}) {
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Link to="/"><img src="Logo ()(1).png" width="90" height="90"
+      <Bounce top><Link to="/"><img src="Logo ()(1)e.png" width="90" height="90"
               className="d-inline-block align-top" alt=""/> </Link></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll basic-navbar-nav me-auto ">

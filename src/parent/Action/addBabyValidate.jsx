@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AddBabyValidate = (vals) => {
 
         let errors={}

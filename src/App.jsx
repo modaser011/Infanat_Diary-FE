@@ -15,6 +15,7 @@ import AllVaccines from "./Admin/Action/allVaccines";
 import { RegisterParent } from "./Forms/register/parent/registerParent";
 import RegisterDoctor from "./Forms/register/Doctor/registerDoctor";
 import { RegisterHos } from "./Forms/register/Hospiatal/registerHos";
+import { Babydata } from "./data/babydata";
 import './App.css';
 function App(){
   //get all movies by axios 
@@ -32,6 +33,7 @@ function App(){
     {png:"theme.png",id:'Theme',link:'/'},
     {png:"logout.png",id:'Logout',link:'/'}
     ] 
+    
 const [datar]=useState([
     {png:"home.png",id:'home',link:'/'}, 
     {png:"baby.png",id:'My Babies',link:'/'}, 
@@ -74,16 +76,6 @@ const [datar]=useState([
        setvacc(vaccine)
       }
 
-    const [babies]=useState([
-      {name:"ahmed",birthData:'10/10/2020',gender:'male',weight:"750",headDiameter:'5',height:'40'},
-      {name:"mena",birthData:'10/10/2020',gender:'female',weight:"750",headDiameter:'5',height:'40'},     
-       {name:"mena",birthData:'10/10/2020',gender:'female',weight:"750",headDiameter:'5',height:'40'}
-,      {name:"mena",birthData:'10/10/2020',gender:'female',weight:"750",headDiameter:'5',height:'40'}
-,      {name:"mena",birthData:'10/10/2020',gender:'female',weight:"750",headDiameter:'5',height:'40'}
-,      {name:"mena",birthData:'10/10/2020',gender:'female',weight:"750",headDiameter:'5',height:'40'}
-
-      ]);
-
 const [search,setsearch]=useState("");
 const setsearcher=(e)=>
 {
@@ -95,11 +87,10 @@ const searcher=()=>
 return datar.filter((el,e)=>el.id.includes(search))
 }
   return (
-      <div className="bg-white">
+      <div>
        { <BrowserRouter> 
        <MyNavbar r={r}/>
           <Routes>
-          
           <Route path ="/forget" element={<Forget/>}/>
           <Route path ="/allusers" element={<Allusers searcher={searcher()} search={search} setsearcher={setsearcher}/>}/>
           <Route path ="/susbendedusers" element={<SusbendedUsers searcher={searcher()} search={search} setsearcher={setsearcher}/>}/>
@@ -108,7 +99,7 @@ return datar.filter((el,e)=>el.id.includes(search))
           <Route path ="/RegisterDoctor" element={<RegisterDoctor/>}/>
           <Route path ="/RegisterHos" element={<RegisterHos/>}/>
 
-          <Route path ="/myBabies" element={<Mybabies data={babies}/>}/>
+         <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/>
           <Route path ="/allVaccines" element={<AllVaccines vacc={vacc} filter={filter} temp3={temp3}/>}/>
           <Route path ="/login" element={<Login/>}/>
           <Route path ="/" element={<Info infox={infox}/>}/>

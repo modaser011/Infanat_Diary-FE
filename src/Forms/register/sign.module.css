@@ -24,7 +24,14 @@
     width: 100%;
 }
 
-#coll2 {
+#coll0,
+#coll1,
+#coll2,
+#coll3,
+#coll4,
+#coll5,
+#coll6,
+#coll7 {
     text-align: left;
 }
 
@@ -45,19 +52,24 @@
     opacity: 0.7;
 }
 
-#controlx {
-    border-radius: 1rem;
-    height: 3rem;
-    width: 100%;
-    border: 1px solid rgb(204, 204, 204);
-}
-
-#controlx:focus {
+#name:focus,
+#email:focus,
+#password:focus,
+#confirm:focus,
+#phone:focus,
+#file:focus {
+    outline: none;
+    box-shadow: none;
     outline: none;
     box-shadow: none;
 }
 
-#controlx2 {
+#name,
+#email,
+#phone,
+#password,
+#confirm,
+#file {
     border-radius: 1rem;
     height: 3rem;
     width: 100%;
@@ -67,28 +79,35 @@
     padding-left: 0.7rem;
 }
 
-#controlx2:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-#controlx:focus+#label,
-#controlx:valid+#label,
-#controlx[x="true"]+#label {
+#name:focus+#label0,
+#name:valid+#label0,
+#name[x="true"]+#label0,
+#email:focus+#label1,
+#email:valid+#label,
+#email[x="true"]+#label1,
+#phone:focus+#label2,
+#phone:valid+#label2,
+#phone[x="true"]+#label2,
+#password:focus+#label3,
+#password:valid+#label3,
+#password[x="true"]+#label3,
+#confirm:focus+#label4,
+#confirm:valid+#label4,
+#confirm[x="true"]+#label4,
+#file:focus+#label5,
+#file:valid+#label5,
+#file[x="true"]+#label5 {
     font-size: 85%;
     transform: translate3d(0, -305%, 0);
     opacity: 1;
 }
 
-#controlx2:focus+#label,
-#controlx2:valid+#label,
-#controlx2[x="true"]+#label {
-    font-size: 85%;
-    transform: translate3d(0, -305%, 0);
-    opacity: 1;
-}
-
-#label {
+#label0,
+#label1,
+#label2,
+#label3,
+#label4,
+#label5 {
     font-size: 30px;
     top: -5px;
     left: 10px;
@@ -102,7 +121,7 @@
     border-radius: 1rem;
     height: 3rem;
     width: 100%;
-    background-color: rgb(153, 137, 117);
+    background-color: #006AD4;
     color: #ffffff;
     font-weight: 800;
 }

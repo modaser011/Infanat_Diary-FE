@@ -1,40 +1,40 @@
 function DoctorValidate(vals){
     let errors={}
     
-    const letter = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/.test(vals.username);
+    const letter = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/.test(vals.name);
     
     
     
-    if((vals.username.length >= 8 && vals.username.length <= 15)&&letter)
+    if((vals.name.length >= 8 && vals.name.length <= 15)&&letter)
   {
-   errors.username=""
+   errors.name=""
   }
   else 
   {
-    errors.username="Username must be from 8 to 15 char";
+    errors.name="Username must be from 8 to 15 char";
   }
-    const capsLetterCheck = /[A-Z]/.test(vals.Password);
-    const numberCheck = /[0-9]/.test(vals.Password);
-    const pwdLengthCheck = vals.Password.length >= 8 && vals.Password.length <= 15;
-    const specialCharCheck = /[!@#$%^&*]/.test(vals.Password);
+    const capsLetterCheck = /[A-Z]/.test(vals.password);
+    const numberCheck = /[0-9]/.test(vals.password);
+    const pwdLengthCheck = vals.password.length >= 8 && vals.password.length <= 15;
+    const specialCharCheck = /[!@#$%^&*]/.test(vals.password);
 
    if((capsLetterCheck)&&(numberCheck)&&(pwdLengthCheck)&&(specialCharCheck))
    {
-    errors.Password="";
+    errors.password="";
    }
    else
    {
-    errors.Password="Password must be from 8 char to 15 and contain capital char,numbers and special char";
+    errors.password="Password must be from 8 char to 15 and contain capital char,numbers and special char";
    }
 
 
-if((vals.Password)!== (vals.confirmPassword))
+if((vals.password)!== (vals.confirmpassword))
   {
-    errors.confirmPassword="confirm password doesn't match password"
+    errors.confirmpassword="confirm password doesn't match password"
   }
    else 
   {
-    errors.confirmPassword=""
+    errors.confirmpassword=""
   }
   return errors;
 }

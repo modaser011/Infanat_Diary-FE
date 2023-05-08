@@ -1,47 +1,110 @@
-import { Button, Col, Container, Row} from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import d from './babies.module.css'
 import AddBaby from './addBaby'; 
-const Mybabies = ({data}) => {
-          return (
-            <Container className='justify-content-center'id={d.cont} >
-           {data.length >=1?<AddBaby/>:<div></div>}
-              <Row className='justify-content-start align-content-center' >
-      {data.length >=1?<h1 style={{marginBottom:'-1rem'}} id={d.hh} className='ms-sm-4 '>All my Babies</h1>:<p></p>}
-                {data.length >=1? data.map(({name,birthData,gender,weight,headDiameter,height},idx)=>(
-     <Col className='col-12 col-sm-6 col-md-4 col-lg-4 mb-2 mt-5 col-xxl-2 col-xl-3' key={idx}  id={d.col}>
-      
-<Card id={d.card}  w-100>
-   <Card.Img src="image.jpg" className="card__image" alt="hu"  id={d.card__image}/>
-   
-  <div  id={d.card__overlay}>
-    <div className='align-content-center text-center pt-4' id={d.overlay_text}>
-<p> Name: {name}</p>
-<p> Birth date: {birthData}</p>
-<p> Gender: {gender}</p>
-<p> Weight: {weight} GM</p>
-<p> Height: {height} Cm</p>
-<p> HeadDiameter: {headDiameter} Cm</p>
-</div>
-<div className='d-flex text-center justify-content-center' id={d.btn}>
-<Button  className="justify-content-center text-center align-items-center btn  rounded-pill d-flex" variant="outline-primary"id={d.overlay_text_btn} > <img src="vac.png" className="me-1" alt="" id={d.img}/>
- Vaccines</Button >
-<Button  className="justify-content-center text-center align-items-center  btn  rounded-pill d-flex" variant="outline-primary" id={d.overlay_text_btn}>  <img src="report.png" className="me-1" alt="" id={d.img}/>
- Reports</Button >
-<Button className="justify-content-center text-center align-items-center  btn  rounded-pill d-flex" variant="outline-primary" id={d.overlay_text_btn2}> 
- <img src="delete.png" className="me-1" alt="" id={d.img}/>
-     Remove</Button >
-</div>
-</div>
-</Card>
-</Col> 
+import React from "react";
+import Slider from "react-slick";
+import { useContext } from 'react';
+import { babyContext } from '../../data/babydata';
+import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
-      ))
-      :         
-      <p className='text center'>you don't have any Babies<AddBaby/></p>
-     }
-              </Row>
+function Right(props) {
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "#F5F7FD" }}
+        onClick={onClick}
+      />
+    );
+  }
 
-          </Container>      );
+  const { className, style, onClick } = props;
+  return (
+    <img src='right1.png' alt="right"
+      className={className}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
+}
+function Left(props) {
+  const { className, style, onClick } = props;
+  return (
+    <img src='left1.png' alt="left"
+      className={className}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
+}
+const Mybabies = () => {
+  const {babies,setsearcher,searcher,search}=useContext(babyContext)
+  const babies2=searcher()
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    nextArrow: <Right/>,
+    prevArrow: <Left />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+            infinite: true,
+            dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+            infinite: true,
+            dots: true
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+            infinite: true,
+            dots: true
+        }
+      }
+    ]
+  };
+
+
+  return (
+            <div className='justify-content-center align-content-center text-center d-flex'id={d.cont}>
+              <Container className='justify-content-center align-content-center align-self-center'>
+      {babies.length >=1?<div className='d-flex justify-content-between'><h3 id={d.hh} className='align-self-center'>All my Babies</h3>
+            <AddBaby/> </div>:<p></p>}
+      <Slider {...settings} className="card__container--inner">   
+                {babies.length >=1? babies.map(({name},idx)=>(
+                     <Card id={d.card} key={idx} style={{ width: '18rem' }} >
+                      <Link to="/" id={d.link} w-50>
+                      <Card.Img  id={d.card_img} className='justify-content-center text-center' src="babyy.jpg" />
+                   <Card.Body className='justify-content-center text-center'>
+                   <Card.Title ><h3 id={d.title}> Name: {name}</h3></Card.Title>
+                   </Card.Body>
+                   </Link>
+        </Card>))
+ 
+      : 
+      <></>        
+     }</Slider>
+              {babies.length >=1?<></>:<p className='text center align-self-center'>you don't have any Babies<AddBaby/></p>}
+     </Container>
+          </div>      );
           }
 export default Mybabies;
