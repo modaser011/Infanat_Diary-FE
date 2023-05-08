@@ -1,33 +1,29 @@
 #cont {
-    background-color: #F5F7FD;
+    background-color: #006AD4;
     width: 100vw;
 }
 
 #btn {
     font-weight: bolder;
     color: #ffffff;
-    background: #88ABF4;
-    border-radius: 10px;
-    width: 96px;
-    height: 40px;
 }
 
 #buttun2 {
     border-radius: 1rem;
     height: 3rem;
-    color: #8ca6f3;
-    /* background: #F5F7FD; */
+    background-color: #006AD4;
     border: none;
     width: 100%;
     text-align: left;
+    color: #ffffff;
 }
 
 #buttun2:hover {
-    background-color: #88ABF4;
+    background-color: #0560bb;
 }
 
 #offc {
-    background-color: #F5F7FD;
+    background-color: #006AD4;
     box-shadow: 0px 0px 0px 1px #ffffff;
     border-radius: 0 1rem 1rem 0;
     transition: .6s;

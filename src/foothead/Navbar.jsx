@@ -30,10 +30,10 @@ function MyNavbar({r}) {
  )
   return (
     
-    <Navbar expand="lg" className="mb-4 mb-md-0" id={d.cont} >   
+    <Navbar expand="lg" className="mb-4 mb-md-0 sticky-top" id={d.cont} >   
       <Container>
         <div className="d-flex">
-       <button variant="primary"style={{border:"none" ,backgroundColor:'#F5F7FD'}}onClick={toggleShow} className="me-2">
+       <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
       <img src="menu.png" width="30" height="30"
               className="d-inline-block align-top" alt=""/>
       </button> 
@@ -41,7 +41,7 @@ function MyNavbar({r}) {
       <Offcanvas show={show} onHide={handleClose} scroll='true' id={d.offc}> 
         <Offcanvas.Body>
           <Offcanvas.Header className="justify-content-center text-center">
-           <Link to='/' ><img src="Logo ()(1).png" width="100" height="100" onClick={handleClose}
+           <Link to='/' ><img src="lgo.png" width="100" height="100" onClick={handleClose}
                alt=""/></Link>  
         </Offcanvas.Header>
          {datax}
