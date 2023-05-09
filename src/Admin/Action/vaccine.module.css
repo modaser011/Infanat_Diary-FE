@@ -4,14 +4,11 @@
     font-weight: 900;
     max-width: 100vw;
     min-height: 91.4vh;
+    background-color: #F5F7FD;
 }
 
 #card {
-    background-color: rgb(218, 217, 217);
-    width: 90%;
-    box-shadow: 3px 3px 3px 3px #d3d2d2;
     color: rgb(0, 0, 0);
-    font-weight: bolder;
     overflow-x: hidden;
     border-radius: 1.5rem;
 }
@@ -20,6 +17,19 @@
     #hh {
         text-align: center;
     }
+}
+
+#link {
+    text-decoration: none;
+    color: #A1A3B0
+}
+
+#title {
+    font-family: 'Neuton';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
 }
 
 #col {

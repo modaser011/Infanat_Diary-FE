@@ -5,22 +5,12 @@ import AddBaby from './addBaby';
 import React from "react";
 import Slider from "react-slick";
 import { useContext } from 'react';
-import { babyContext } from '../../data/babydata';
+import { vacBabyContext } from '../../data/vacBabydata';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
-function Right(props) {
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "#F5F7FD" }}
-        onClick={onClick}
-      />
-    );
-  }
-
+function Right(props)
+{
   const { className, style, onClick } = props;
   return (
     <img src='right1.png' alt="right"
@@ -30,6 +20,7 @@ function Right(props) {
     />
   );
 }
+ 
 function Left(props) {
   const { className, style, onClick } = props;
   return (
@@ -41,7 +32,7 @@ function Left(props) {
   );
 }
 const Mybabies = () => {
-  const {babies,setsearcher,searcher,search}=useContext(babyContext)
+  const {babies,setsearcher,searcher,search}=useContext(vacBabyContext)
   const babies2=searcher()
   var settings = {
     dots: true,
@@ -85,12 +76,27 @@ const Mybabies = () => {
 
 
   return (
-            <div className='justify-content-center align-content-center text-center d-flex'id={d.cont}>
-              <Container className='justify-content-center align-content-center align-self-center'>
-      {babies.length >=1?<div className='d-flex justify-content-between'><h3 id={d.hh} className='align-self-center'>All my Babies</h3>
+            <div className='justify-content-center align-content-center text-center d-flex container 'id={d.cont}>
+              <Container className='justify-content-center align-content-center align-self-center mb-5'>
+                <div>in this section you can find all your babies</div>
+                <br/>
+      {babies.length >=1?<div className='d-flex justify-content-between align-content-start'>
+            <h3 id={d.hh} className='align-self-center'>All my Babies</h3>
+            <Form.Control
+          style={{
+            width:"300px"
+            ,height:"2.2rem"
+          }}
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              className='rounded-pill text-center align-self-center me-2'
+              value={search}
+              onChange={(e)=>setsearcher(e)}
+            />
             <AddBaby/> </div>:<p></p>}
       <Slider {...settings} className="card__container--inner">   
-                {babies.length >=1? babies.map(({name},idx)=>(
+                {babies.length >=1? babies2.map(({name},idx)=>(
                      <Card id={d.card} key={idx} style={{ width: '18rem' }} >
                       <Link to="/" id={d.link} w-50>
                       <Card.Img  id={d.card_img} className='justify-content-center text-center' src="babyy.jpg" />

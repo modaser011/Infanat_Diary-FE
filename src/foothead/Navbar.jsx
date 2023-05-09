@@ -34,7 +34,7 @@ function MyNavbar({r}) {
       <Container>
         <div className="d-flex">
        <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
-      <img src="menu.png" width="30" height="30"
+      <img src="clipart282138.png" width="20" height="20"
               className="d-inline-block align-top" alt=""/>
       </button> 
      <Fade left>
@@ -48,8 +48,9 @@ function MyNavbar({r}) {
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Link to="/"><img src="Logo ()(1)e.png" width="90" height="90"
-              className="d-inline-block align-top" alt=""/> </Link></Bounce></div> 
+      <Bounce top><Navbar.Brand><Link to="/"><img src="lgo.png" width="132"
+              height="90"
+              className="d-inline-block align-top" alt=""/> </Link></Navbar.Brand></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll basic-navbar-nav me-auto ">
           <Nav

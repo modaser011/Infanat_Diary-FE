@@ -15,7 +15,7 @@ import AllVaccines from "./Admin/Action/allVaccines";
 import { RegisterParent } from "./Forms/register/parent/registerParent";
 import RegisterDoctor from "./Forms/register/Doctor/registerDoctor";
 import { RegisterHos } from "./Forms/register/Hospiatal/registerHos";
-import { Babydata } from "./data/babydata";
+import { Babydata } from "./data/vacBabydata";
 import './App.css';
 function App(){
   //get all movies by axios 
@@ -99,7 +99,7 @@ return datar.filter((el,e)=>el.id.includes(search))
           <Route path ="/RegisterDoctor" element={<RegisterDoctor/>}/>
           <Route path ="/RegisterHos" element={<RegisterHos/>}/>
 
-         <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/>
+         {/* <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/> */}
           <Route path ="/allVaccines" element={<AllVaccines vacc={vacc} filter={filter} temp3={temp3}/>}/>
           <Route path ="/login" element={<Login/>}/>
           <Route path ="/" element={<Info infox={infox}/>}/>

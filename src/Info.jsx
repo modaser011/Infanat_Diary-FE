@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import d from './info.module.css'
 import Zoom from 'react-reveal/Zoom';
 import Slider from './Slider';
+import Mybabies from './parent/Action/Mybabies';
+import { VacBabydata } from "./data/vacBabydata";
+
 const Info = ({infox}) => {
     const datax=infox.map(({info},idx)=>(
        <Col className='col-12 col-sm-6 col-md-4 col-lg-4 mb-2 mt-5 col-xxl-2 col-xl-3' key={idx}  id={d.col}>
@@ -21,8 +24,10 @@ const Info = ({infox}) => {
     )
     return (
         <Container className='justify-content-center ' id={d.cont}>
-          <Slider/>
-          <Zoom>  
+          <Slider className='mb-2'/>
+          <br/>
+          <VacBabydata><Mybabies/></VacBabydata>
+                    <Zoom>  
             <Row className='justify-content-start mx-auto align-content-center container '>
               {datax}
             </Row>
