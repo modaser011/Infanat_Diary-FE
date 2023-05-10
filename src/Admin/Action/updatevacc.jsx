@@ -5,7 +5,7 @@ import {Alert,Button} from 'react-bootstrap';
 import d from './addVac.module.css'
 import AddVacValidate from './addVacValidate';
 import axios from "axios";
-const Updatevacc = ({details,ID}) => {
+const Updatevacc = ({details,ID,z}) => {
     
     const[compulsory,setCompulsory]=useState(details.compulsory==="NO"?"Elective":"Mandatory")
         const [vals,setVals]=useState(
@@ -38,8 +38,8 @@ const Updatevacc = ({details,ID}) => {
         axios.put(`https://infant-diary-backend.onrender.com/api/v1/vaccine/${ID.id}`,json,{headers:{'Content-Type':'application/json'}})
      .then(res=>{
       if(res.status === 200){
+        z()
         setShow(false)
-        window.location.reload(false)
     } else {
         alert(res.data.Error);
     }      })

@@ -31,10 +31,23 @@ nav('/allVaccines')        }
     }      })
     }
 
+
+
+const[succ1,setSucc1]=useState(false)
+const[succ2,setSucc2]=useState(false)
+
+const z=()=>
+{
+  setSucc2(true)
+}
+if(succ2===true)
+{
+  setSucc1(!succ1)
+  setSucc2(false)
+}
 useEffect(() => {
   detailsVac();
-}, [])
-//console.log(details)
+}, [succ1])
   return (
     
     <div className="vaccinedetails__container mx-start justify-content-center mx-auto ">
@@ -67,7 +80,7 @@ useEffect(() => {
           </div>
           <br/>
           <div className="d-flex">
-<Updatevacc details={details} ID={ID} />        
+<Updatevacc details={details} ID={ID} z={z} />        
 <div className="mb-3"><Button onClick={deleteVacc} className="btn btn-danger mx-3"> delete </Button></div>
 </div>
         </div>

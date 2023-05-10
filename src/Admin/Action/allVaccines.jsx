@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import { useContext } from 'react';
 import { vacBabyContext } from '../../data/vacBabydata';
 import { VacBabydata } from '../../data/vacBabydata';
+import { useEffect } from 'react';
 
 function Right(props) {
   const { className, style, onClick } = props;
@@ -69,12 +70,38 @@ const AllVaccines = () => {
       }
     ]
   };
-    const {vacc,loud,x}=useContext(vacBabyContext)
+    const {
+        vacc,
+        loud,
+        DetailsVac,
+        x,
+        setX,
+        }=useContext(vacBabyContext)
+    
+      const[succ1,setSucc1]=useState(false)
+      const[succ2,setSucc2]=useState(false)
+
+      const z=()=>
+      {
+        setSucc2(true)
+      }
+      if(succ2===true)
+      {
+        //alert('true')
+        setSucc1(!succ1)
+        setSucc2(false)
+      }
+      useEffect(() => {
+        DetailsVac();
+        setTimeout(() => {
+          setX(true);
+        }, 1000);
+      }, [succ1]);
     return (
       <div className='justify-content-center align-content-center text-center d-flex container'id={d.cont}>
       <Container className='justify-content-center align-content-center align-self-center'>
 {vacc.length >=1?<div className='d-flex justify-content-between'><h3 id={d.hh} className='align-self-center'>All Vaccines</h3>
-<VacBabydata> <AddVaccine/></VacBabydata> </div>:<p></p>}
+<VacBabydata> <AddVaccine z={z}/></VacBabydata> </div>:<p></p>}
 <Slider {...settings} className="card__container--inner">   
         {vacc.length >=1? vacc.map(({name,age,_id},idx)=>(
              <Card id={d.card} key={idx}  >
@@ -91,9 +118,9 @@ const AllVaccines = () => {
 : 
 <></>        
 }</Slider>
-      {loud&&<p className='align-self-start'>loading...</p>}
+      {vacc.length===0&&loud&&<p className='align-self-start'>loading...</p>}
       {vacc.length===0&&!loud&&x&&
-      <p className='align-self-center'>there is no vaccines<VacBabydata> <AddVaccine /></VacBabydata></p>
+      <p className='align-self-center'>there is no vaccines<VacBabydata> <AddVaccine z={z}/></VacBabydata></p>
       }
 </Container>
   </div>      );

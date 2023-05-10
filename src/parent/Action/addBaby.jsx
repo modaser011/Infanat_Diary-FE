@@ -37,7 +37,7 @@ const AddBaby = () => {
       var json = JSON.stringify(vals);
       axios
         .post(
-          "https://infant-diary-backend.onrender.com/api/v1/parent/addChild",
+          "https://infant-diary-backend.onrender.com/api/v1/child/parent",
           json,
           { headers: { "Content-Type": "application/json" } }
         )

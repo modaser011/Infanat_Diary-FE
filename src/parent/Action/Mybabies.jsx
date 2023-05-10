@@ -2,12 +2,13 @@ import { Container} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import d from './babies.module.css'
 import AddBaby from './addBaby'; 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { useContext } from 'react';
 import { vacBabyContext } from '../../data/vacBabydata';
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import { VacBabydata } from '../../data/vacBabydata';
 
 function Right(props)
 {
@@ -32,8 +33,28 @@ function Left(props) {
   );
 }
 const Mybabies = () => {
-  const {babies,setsearcher,searcher,search}=useContext(vacBabyContext)
-  const babies2=searcher()
+  
+  const {
+    babies,
+    loud,
+    x,
+    setX,
+    Detailschild,
+  }=useContext(vacBabyContext)
+  
+  const[succ1,setSucc1]=useState(false)
+  const[succ2,setSucc2]=useState(false)
+
+  const z=()=>
+  {
+    setSucc2(true)
+  }
+  if(succ2===true)
+  {
+    //alert('true')
+    setSucc1(!succ1)
+    setSucc2(false)
+  }
   var settings = {
     dots: true,
     infinite: false,
@@ -73,8 +94,11 @@ const Mybabies = () => {
       }
     ]
   };
-
-
+  useEffect(() => {
+    Detailschild();
+    setTimeout(() => {
+      setX(true);
+    }, 1000);}, [succ1]);
   return (
             <div className='justify-content-center align-content-center text-center d-flex container 'id={d.cont}>
               <Container className='justify-content-center align-content-center align-self-center mb-5'>
@@ -91,12 +115,10 @@ const Mybabies = () => {
               placeholder="Search"
               aria-label="Search"
               className='rounded-pill text-center align-self-center me-2'
-              value={search}
-              onChange={(e)=>setsearcher(e)}
             />
             <AddBaby/> </div>:<p></p>}
       <Slider {...settings} className="card__container--inner">   
-                {babies.length >=1? babies2.map(({name},idx)=>(
+                {babies.length >=1? babies.map(({name},idx)=>(
                      <Card id={d.card} key={idx} style={{ width: '18rem' }} >
                       <Link to="/" id={d.link} w-50>
                       <Card.Img  id={d.card_img} className='justify-content-center text-center' src="babyy.jpg" />
@@ -109,8 +131,10 @@ const Mybabies = () => {
       : 
       <></>        
      }</Slider>
-              {babies.length >=1?<></>:<p className='text center align-self-center'>you don't have any Babies<AddBaby/></p>}
-     </Container>
+ {babies.length===0&&loud&&<p className='align-self-start'>loading...</p>}
+      {babies.length===0&&!loud&&x&&
+      <p className='align-self-center'>there is no vaccines<VacBabydata> <AddBaby z={z}/></VacBabydata></p>
+      }     </Container>
           </div>      );
           }
 export default Mybabies;

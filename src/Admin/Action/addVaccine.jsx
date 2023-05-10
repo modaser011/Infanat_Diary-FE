@@ -1,25 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Alert, Button } from "react-bootstrap";
 import d from "./addVac.module.css";
 import AddVacValidate from "./addVacValidate";
 import axios from "axios";
+
 import { vacBabyContext } from "../../data/vacBabydata";
-const AddVaccine = () => {
-  const {
-    babies,
-    setsearcher,
-    searcher,
-    search,
-    vacc,
-    Details2,
-    loud,
-    x,
-    setSucc,
-    succ,
-    setVacc,
-  } = useContext(vacBabyContext);
+const AddVaccine = ({ z }) => {
+  const { vacc, setSucc, succ } = useContext(vacBabyContext);
   //console.log(succ)
   const [show, setShow] = useState(false);
   const [compulsory, setCompulsory] = useState("");
@@ -37,7 +26,9 @@ const AddVaccine = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  console.log("addVac", vacc);
   const validate = (e) => {
+    setSucc(!succ);
     e.preventDefault();
     setErrors(AddVacValidate(vals));
     const allvals = vals;
@@ -54,11 +45,10 @@ const AddVaccine = () => {
         )
         .then((res) => {
           if (res.status === 200) {
+            z();
+            setSucc(true);
+            setTimeout(() => {}, 500);
             setShow(false);
-            setSucc(!succ);
-            Details2();
-            console.log(vacc);
-            //window.location.reload(false)
           } else {
             alert(res.data.Error);
           }
@@ -66,7 +56,9 @@ const AddVaccine = () => {
         .catch((err) => alert(err.response.data.message));
     }
   };
-
+  const sd = () => {
+    alert(succ);
+  };
   return (
     <div className="mt-3 mb-3 text-center ">
       <Button variant="primary" onClick={handleShow} id={d.btn2}>
