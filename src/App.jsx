@@ -10,13 +10,13 @@ import Info from "./Info";
 import { ForgetConfirm } from "./Forms/Forget pass/ForgetConfirm";
 import Allusers from "./Admin/Users/Allusers";
 import SusbendedUsers from "./Admin/Users/SusbendedUsers";
-import Mybabies from "./parent/Action/Mybabies";
 import AllVaccines from "./Admin/Action/allVaccines";
 import { RegisterParent } from "./Forms/register/parent/registerParent";
 import RegisterDoctor from "./Forms/register/Doctor/registerDoctor";
 import { RegisterHos } from "./Forms/register/Hospiatal/registerHos";
-import { Babydata } from "./data/vacBabydata";
 import VaccineDetails from "./Admin/Action/VaccineDetails";
+import Chatting from "./parent/Action/chatting";
+import { VacBabydata } from "./data/vacBabydata";
 import './App.css';
 function App(){
   //get all movies by axios 
@@ -99,10 +99,10 @@ return datar.filter((el,e)=>el.id.includes(search))
           <Route path ="/RegisterParent" element={<RegisterParent/>}/>
           <Route path ="/RegisterDoctor" element={<RegisterDoctor/>}/>
           <Route path ="/RegisterHos" element={<RegisterHos/>}/>
-
+          <Route path ="/chatting" element={<Chatting/>}/>
          {/* <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/> */}
          <Route path="/vaccine/:id" element={<VaccineDetails />} />
-          <Route path ="/allVaccines" element={<AllVaccines vacc={vacc} filter={filter} temp3={temp3}/>}/>
+          <Route path ="/allVaccines" element={<VacBabydata><AllVaccines/></VacBabydata>}/>
           <Route path ="/login" element={<Login/>}/>
           <Route path ="/" element={<Info infox={infox}/>}/>
             </Routes> 

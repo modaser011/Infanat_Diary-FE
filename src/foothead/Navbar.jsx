@@ -8,6 +8,9 @@ import {Link} from "react-router-dom";
 import { useState } from 'react';
 import Fade from 'react-reveal/Fade';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import logo from "../assets/lgo.png";
+import burger from "../assets/clipart282138.png";
+
 function MyNavbar({r}) {
 
   const [show, setShow] = useState(false);
@@ -34,21 +37,21 @@ function MyNavbar({r}) {
       <Container>
         <div className="d-flex">
        <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
-      <img src="clipart282138.png" width="20" height="20"
+      <img src={burger} width="20" height="20"
               className="d-inline-block align-top" alt=""/>
       </button> 
      <Fade left>
       <Offcanvas show={show} onHide={handleClose} scroll='true' id={d.offc}> 
         <Offcanvas.Body>
           <Offcanvas.Header className="justify-content-center text-center">
-           <Link to='/' ><img src="lgo.png" width="100" height="100" onClick={handleClose}
+           <Link to='/' ><img src={logo} width="100" height="100" onClick={handleClose}
                alt=""/></Link>  
         </Offcanvas.Header>
          {datax}
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Navbar.Brand><Link to="/"><img src="lgo.png" width="132"
+      <Bounce top><Navbar.Brand><Link to="/"><img src={logo} width="132"
               height="90"
               className="d-inline-block align-top" alt=""/> </Link></Navbar.Brand></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />

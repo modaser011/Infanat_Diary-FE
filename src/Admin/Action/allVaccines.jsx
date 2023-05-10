@@ -1,24 +1,15 @@
-import React from 'react';
-import { Col, Container,Button } from 'react-bootstrap';
-import {Row,Card} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Container} from 'react-bootstrap';
+import {Card} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import d from './vaccine.module.css'
-import Zoom from 'react-reveal/Zoom';
 import AddVaccine from './addVaccine';
 import Slider from "react-slick";
+import { useContext } from 'react';
+import { vacBabyContext } from '../../data/vacBabydata';
+import { VacBabydata } from '../../data/vacBabydata';
 
 function Right(props) {
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "#F5F7FD" }}
-        onClick={onClick}
-      />
-    );
-  }
-
   const { className, style, onClick } = props;
   return (
     <img src='right1.png' alt="right"
@@ -38,7 +29,7 @@ function Left(props) {
     />
   );
 }
-const AllVaccines = ({vacc,temp3,filter}) => {
+const AllVaccines = () => {
   var settings = {
     dots: true,
     infinite: false,
@@ -78,21 +69,20 @@ const AllVaccines = ({vacc,temp3,filter}) => {
       }
     ]
   };
-
-    
-     return (
+    const {vacc,loud,x}=useContext(vacBabyContext)
+    return (
       <div className='justify-content-center align-content-center text-center d-flex container'id={d.cont}>
       <Container className='justify-content-center align-content-center align-self-center'>
 {vacc.length >=1?<div className='d-flex justify-content-between'><h3 id={d.hh} className='align-self-center'>All Vaccines</h3>
-    <AddVaccine/> </div>:<p></p>}
+<VacBabydata> <AddVaccine/></VacBabydata> </div>:<p></p>}
 <Slider {...settings} className="card__container--inner">   
-        {vacc.length >=1? vacc.map(({name,age},idx)=>(
+        {vacc.length >=1? vacc.map(({name,age,_id},idx)=>(
              <Card id={d.card} key={idx}  >
-              <Link to="/" id={d.link} w-50>
+              <Link to={`/vaccine/${_id}`} id={d.link} w-50>
               <Card.Img  id={d.card_img} className='justify-content-center text-center' src="babyy.jpg" />
            <Card.Body className='justify-content-center text-center'style={{ height: '6rem' }}>
-           <Card.Title ><h3 id={d.title}> Name: {name}</h3></Card.Title>
-           <Card.Title  className='mb-4'><h3 id={d.title}> Age: {age}</h3></Card.Title>
+           <h3 id={d.title}> Name: {name}</h3>
+           <h3 id={d.title}> Age: {age}</h3>
 
            </Card.Body>
            </Link>
@@ -101,7 +91,10 @@ const AllVaccines = ({vacc,temp3,filter}) => {
 : 
 <></>        
 }</Slider>
-      {vacc.length >=1?<></>:<p className='text center align-self-center'>there is no vaccines<AddVaccine/></p>}
+      {loud&&<p className='align-self-start'>loading...</p>}
+      {vacc.length===0&&!loud&&x&&
+      <p className='align-self-center'>there is no vaccines<VacBabydata> <AddVaccine /></VacBabydata></p>
+      }
 </Container>
   </div>      );
   }

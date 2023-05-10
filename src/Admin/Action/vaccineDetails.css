@@ -1,13 +1,17 @@
-.vaccinedetails__container{
+.vaccinedetails__container {
     display: flex;
-    height: fit-content;
-    width: fit-content;
+    max-width: 100vw;
+    min-height: 91.4vh;
     align-items: center;
     justify-content: center;
     margin: 3rem 1rem;
+    margin-top: 0rem;
 }
-.vaccinedetails{
+
+.vaccinedetails {
+    /* background-color: aqua; */
     width: 80%;
+    /* max-width: 100vw; */
     height: fit-content;
     display: flex;
     border-radius: 10px;
@@ -17,33 +21,34 @@
     align-items: flex-start;
 }
 
-.vaccinedetails__left{
+.vaccinedetails__left {
     flex: 1;
 }
 
-.vaccinedetails__image{
+.vaccinedetails__image {
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 0.5rem;
 }
 
-.vaccinedetails__ageDoseComp{
+.vaccinedetails__ageDoseComp {
     display: flex;
     align-items: center;
     padding: 2px;
     gap: 10px;
 }
 
-.vaccinedetails__right{
+.vaccinedetails__right {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 0;
+    height: 100%;
 }
 
-.vaccinedetails__infoInside{
+.vaccinedetails__infoInside {
     text-align: start;
     color: rgb(114, 114, 114);
     font-weight: 500;
@@ -52,29 +57,29 @@
     padding: 0.3rem;
 }
 
-.vaccinedetails__infoInside > span{
+.vaccinedetails__infoInside>span {
     color: #006AD4;
     font-weight: bold;
 }
 
-.vaccinedetails__header{
+.vaccinedetails__header {
     font-weight: 400;
 }
 
-.vaccinedetails__info{
+.vaccinedetails__info {
     text-align: start;
     color: rgb(114, 114, 114);
     font-weight: 500;
     font-size: large;
 }
 
-.vaccinedetails__info > span{
+.vaccinedetails__info>span {
     color: #006AD4;
     font-weight: bold;
 }
 
 @media screen and (max-width: 1000px) {
-    .vaccinedetails{
+    .vaccinedetails {
         flex-direction: column;
     }
 }
