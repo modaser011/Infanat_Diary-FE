@@ -10,6 +10,7 @@ import Fade from 'react-reveal/Fade';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from "../assets/lgo.png";
 import burger from "../assets/clipart282138.png";
+import { Button } from "react-bootstrap";
 
 function MyNavbar({r}) {
 
@@ -51,8 +52,8 @@ function MyNavbar({r}) {
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Navbar.Brand><Link to="/"><img src={logo} width="132"
-              height="90"
+      <Bounce top><Navbar.Brand><Link to="/"><img src={logo} width="120"
+              height="100"
               className="d-inline-block align-top" alt=""/> </Link></Navbar.Brand></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll basic-navbar-nav me-auto ">
@@ -60,8 +61,8 @@ function MyNavbar({r}) {
             className="my-2 my-lg-0 me-auto"
             navbarScroll>
           </Nav>
-            <Link to="/RegisterParent"><button id={d.btn} className="me-3 btn" variant="primary">Sign up</button></Link>
-            <Link to="/login"><button  id={d.btn}className="me-3 btn" variant="primary">Login</button></Link>
+            <Link to="/RegisterParent"><Button id={d.btn} className="me-3 btn " variant="outline-light">Sign up</Button></Link>
+            <Link to="/login"><Button  id={d.btn}className="" variant="outline-light">Login</Button></Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

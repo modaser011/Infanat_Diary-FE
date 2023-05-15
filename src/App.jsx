@@ -6,7 +6,7 @@ import { Footer } from "./foothead/footer";
 import { useState } from "react";
 import MyNavbar from "./foothead/Navbar";
 import {Forget} from "./Forms/Forget pass/forget";
-import Info from "./Info";
+import Parent from "./parent";
 import { ForgetConfirm } from "./Forms/Forget pass/ForgetConfirm";
 import Allusers from "./Admin/Users/Allusers";
 import SusbendedUsers from "./Admin/Users/SusbendedUsers";
@@ -18,6 +18,7 @@ import VaccineDetails from "./Admin/Action/VaccineDetails";
 import Chatting from "./parent/Action/chatting";
 import { VacBabydata } from "./data/vacBabydata";
 import './App.css';
+import Article from "./Article";
 function App(){
   //get all movies by axios 
   const infox=[{info:'feeding'},{info:'sleeping'},
@@ -100,11 +101,12 @@ return datar.filter((el,e)=>el.id.includes(search))
           <Route path ="/RegisterDoctor" element={<RegisterDoctor/>}/>
           <Route path ="/RegisterHos" element={<RegisterHos/>}/>
           <Route path ="/chatting" element={<Chatting/>}/>
-         {/* <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/> */}
+          <Route path="/article" element={<Article/>}/>
+                     {/* <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/> */}
          <Route path="/vaccine/:id" element={<VaccineDetails />} />
           <Route path ="/allVaccines" element={<VacBabydata><AllVaccines/></VacBabydata>}/>
           <Route path ="/login" element={<Login/>}/>
-          <Route path ="/" element={<Info infox={infox}/>}/>
+          <Route path ="/parent" element={<Parent infox={infox}/>}/>
             </Routes> 
             <Footer/>
        </BrowserRouter> } 

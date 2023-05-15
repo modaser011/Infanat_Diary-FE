@@ -8,7 +8,7 @@ import Slider from './Slider';
 import Mybabies from './parent/Action/Mybabies';
 import { VacBabydata } from "./data/vacBabydata";
 
-const Info = ({infox}) => {
+const Parent = ({infox}) => {
     const datax=infox.map(({info},idx)=>(
        <Col className='col-12 col-sm-6 col-md-4 col-lg-4 mb-2 mt-5 col-xxl-2 col-xl-3' key={idx}  id={d.col}>
           <Card id={d.card} style={{ width: '18rem' }} 
@@ -36,4 +36,4 @@ const Info = ({infox}) => {
     );
 }
 
-export default Info;
+export default Parent;

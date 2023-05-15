@@ -31,12 +31,12 @@ const res=await axios.post('https://infant-diary-backend.onrender.com/api/v1/par
  return (
   <Container id={d.cont} className="justify-content-center me-5 mt-sm-5 mt-xs-5 justify-content-center align-item-center text-center d-flex">
   <Row className="pb-5 container py-auto my-auto">
-  <Col className="col-md-5 my-auto ms-auto text-center text-md-start">
+  <Col className="col-md-5 my-auto ms-auto text-center text-md-start px-0 ">
   <h1>Welcome </h1>
   <h1>Back</h1>
     <img src="Logo ()(1).png"className=" img-fluid " alt=""/>
   </Col>
-   <Col lg={true} id={d.coll} className="col-md-7 my-auto mx-auto ">
+   <Col lg={true} id={d.coll} className="col-md-7 my-auto mx-auto px-0">
       <Form className="text-center mx-3" id={d.form} onSubmit={validate}>
     <Form.Group className="mb-2" id={d.grb1}>
       <Form.Control type="email" placeholder="Enter email" required id={d.email} x="true"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
