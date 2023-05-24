@@ -10,6 +10,24 @@
     color: #ffffff;
 }
 
+#btn:hover {
+    font-weight: bolder;
+    color: #ffffff;
+    background-color: #2a8aeb;
+}
+
+#btn:active {
+    font-weight: bolder;
+    color: #ffffff;
+    background-color: #2a8aeb;
+}
+
+#btn:focus {
+    font-weight: bolder;
+    color: #ffffff;
+    background-color: #2a8aeb;
+}
+
 #buttun2 {
     border-radius: 1rem;
     height: 3rem;

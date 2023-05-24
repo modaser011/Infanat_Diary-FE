@@ -34,7 +34,7 @@ function MyNavbar({r}) {
  )
   return (
     
-    <Navbar expand="lg" className="mb-4 mb-md-0 sticky-top" id={d.cont} >   
+    <Navbar expand="lg" className="mb-md-0 sticky-top" id={d.cont} >   
       <Container>
         <div className="d-flex">
        <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
@@ -52,8 +52,8 @@ function MyNavbar({r}) {
         </Offcanvas.Body>
      </Offcanvas>
       </Fade>
-      <Bounce top><Navbar.Brand><Link to="/"><img src={logo} width="120"
-              height="100"
+      <Bounce top><Navbar.Brand><Link to="/"><img src={logo} width="100"
+              height="80"
               className="d-inline-block align-top" alt=""/> </Link></Navbar.Brand></Bounce></div> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll basic-navbar-nav me-auto ">

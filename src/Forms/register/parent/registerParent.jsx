@@ -49,9 +49,9 @@
         }
         return (
           <Container id={d.cont} className="justify-content-center align-content-center justify-content-center me-5 mt-sm-5 mt-xs-5 justify-content-center align-item-center text-center d-flex">
-          <Row className="justify-content-between align-items-center bg-white pb-5 container"id={d.Row}  > 
+          <Row className="pb-5 container py-auto my-auto " > 
 
-          <Col className="col-md-5 align-items-start justify-content-center text-center pb-md-5 mt-xs-0 mt-sm-0 text-center text-md-start"> 
+          <Col className="col-md-5 my-auto ms-auto text-center text-md-start px-0"> 
           <h1>Get Started</h1>
           <h1>With</h1>
           <h1>Infant Diary</h1>
@@ -59,7 +59,7 @@
           </Col>
 
 
-          <Col lg={true} id={d.coll} className="col-md-7 pt-md-5 my-auto mx-auto">
+          <Col lg={true} id={d.coll} className="col-md-7 my-auto mx-auto px-0">
               <Form className="text-center mx-3 " onSubmit={validate}>
           <Form.Group className="mb-2" id={d.coll0}>
                 <Form.Control type="text"placeholder="Enter Username" required onChange={handleInput} id={d.name} value={vals.name}  x="true" name="name"/>

@@ -7,6 +7,14 @@
     background-color: #F5F7FD;
 }
 
+#lnk:hover {
+    text-decoration: underline;
+}
+
+#card_img {
+    border-radius: 0 0 0 0;
+}
+
 #controlx {
     border-radius: 1rem;
     height: 3rem;

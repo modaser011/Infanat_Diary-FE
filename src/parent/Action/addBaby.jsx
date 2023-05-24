@@ -4,8 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import { Alert, Button } from "react-bootstrap";
 import d from "./babies.module.css";
 import AddBabyValidate from "./addBabyValidate";
+import { vacBabyContext } from "../../data/vacBabydata";
 import axios from "axios";
+import { useContext } from "react";
 const AddBaby = () => {
+  const userauth=useContext(vacBabyContext)
+  console.log("token : "+userauth.token)
+  console.log(userauth.mad)
+
   const [show, setShow] = useState(false);
   const [vals, setVals] = useState({
     name: "",
@@ -37,9 +43,9 @@ const AddBaby = () => {
       var json = JSON.stringify(vals);
       axios
         .post(
-          "https://infant-diary-backend.onrender.com/api/v1/child/parent",
+          "https://infant-diary-backend.onrender.com/api/v1/child",
           json,
-          { headers: { "Content-Type": "application/json" } }
+          { headers: { "Content-Type": "application/json" ,'token': `Bearer ${userauth.token}`} }
         )
         .then((res) => {
           if (res.status === 200) {
@@ -54,7 +60,7 @@ const AddBaby = () => {
   };
   return (
     <div className="mt-3 mb-3 text-center ">
-      <Button variant="primary" onClick={handleShow} id={d.btn2}>
+      <Button variant="primary" onClick={handleShow} id={d.btn2} style={{height:'2.5rem'}}>
         Add new Baby
       </Button>
       <Modal show={show} onHide={handleClose} className="my-auto">
