@@ -20,21 +20,21 @@ const VacBabydata = ({ children }) => {
   const [loud2, setLoud2] = useState(false);
 
   const [x, setX] = useState(false);
-
+const [change,setChange]=useState(true)
   const Detailschild = async () => {
     setLoud2(true);
     await axios
-      .get("https://infant-diary-backend.onrender.com/api/v1/child",{headers:{'token': `Bearer ${token}`}})
+      .get("https://infant-diary-backend.onrender.com/api/v1/parent",{headers:{"Access-Control-Allow-Origin":"*","Content-Type": "application/json",'token':`${token}`}})
       .then((res) => {
         if (res.status === 200) {
           setLoud2(false);
-          setBabies(res.data.documents);
+          setBabies(res.data.childerns);
         } else {
           alert(res.data.Error);
         }
       });
   };
-
+console.log('token is = '+token)
   const DetailsVac = async () => {
     setLoud(true);
     await axios
@@ -72,7 +72,7 @@ const VacBabydata = ({ children }) => {
         Detailschild,
         loud2,
         token,
-        setToken,mad,setMad
+        setToken,mad,setMad,change,setChange
       }}
     >
       {children}

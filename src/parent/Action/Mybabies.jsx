@@ -35,19 +35,7 @@ function Left(props) {
   );
 }
 const Mybabies = () => {
-  const { babies, loud, x, setX, Detailschild } = useContext(vacBabyContext);
-
-  const [succ1, setSucc1] = useState(false);
-  const [succ2, setSucc2] = useState(false);
-
-  const z = () => {
-    setSucc2(true);
-  };
-  if (succ2 === true) {
-    //alert('true')
-    setSucc1(!succ1);
-    setSucc2(false);
-  }
+ 
   var settings = {
     dots: true,
     infinite: false,
@@ -87,41 +75,39 @@ const Mybabies = () => {
       },
     ],
   };
+  const { babies, loud, x, setX, Detailschild,change} = useContext(vacBabyContext);
+
   useEffect(() => {
     Detailschild();
-    setTimeout(() => {
-      setX(true);
-    }, 1000);
-  }, [succ1]);
-  const userauth=useContext(vacBabyContext)
-  console.log("token1 =  "+ userauth.token)
+  }, [change]);
+
   return (
     <div
-      className="justify-content-center align-content-center text-center d-flex container "
+      className="justify-content-center align-content-center text-center d-flex container"
       id={d.cont}
     >
       <Container className="justify-content-center align-content-center align-self-center mt-5 mb-5">
-        <div>in this section you can find all your babies</div>
-        <br />
         {babies.length >= 1 ? (
-          <div className="d-flex justify-content-between align-content-start">
-            <h3 id={d.hh} className="align-self-center">
-              All my Babies
-            </h3>
-            <Form.Control
-              style={{
-                width: "300px",
-                height: "2.2rem",
-              }}
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              className="rounded-pill text-center align-self-center me-2"
-            />
-              <AddBaby />
-          </div>
+  <div className="d-flex justify-content-between align-items-start mx-1 mb-3" >
+  <h1>Babies</h1>
+  <Link 
+    to="/allBabies"
+    className="d-flex align-self-end"
+    style={{ textDecoration: "none", fontWeight: "600" }}
+  >
+    
+    <p id={d.lnk}>See all</p>
+    <img
+      src="pngegg.png"
+      style={{ width: "10px", height: "10px" }}
+      className="ms-1 mt-2"
+      alt=""
+    />
+  </Link>          
+  </div>
+  
         ) : (
-          <p></p>
+          <></>
         )}
         <Slider {...settings} className="card__container--inner">
           {babies.length >= 1 ? (
@@ -150,10 +136,10 @@ const Mybabies = () => {
         )}
         {babies.length === 0 && !loud && x && (
           <p className="align-self-center">
-            there is no vaccines
-            <AddBaby z={z} />
+            there is no Babies
+            <AddBaby/>
           </p>
-        )}{" "}
+        )}
       </Container>
     </div>
   );

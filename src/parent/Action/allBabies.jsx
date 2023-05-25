@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import d from "./allDoc.module.css";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import AddBaby from './addBaby';
+import { vacBabyContext } from '../../data/vacBabydata';
+
 const AllBabies = () => {
+  const { babies, loud, x, setX, Detailschild,change} = useContext(vacBabyContext);
+
+  useEffect(() => {
+    Detailschild();
+  }, [change]);
+
     return (
         <Container
         fluid
@@ -33,7 +41,9 @@ const AllBabies = () => {
           </Col>
   
           <Col md={true} className="col-md-9 mx-0 mt-3 mt-md-0">
-            <Row className="d-flex mb-4" id={d.colm2}>
+          {babies.length >= 1 ? ( 
+           babies.map(({ name,gender,headDiameter,height,weight }, idx) => (
+          <Row className="d-flex mb-4" id={d.colm2}>
               <Col
                 className="col-3 align-self-center me-4 ms-md-4"
                 style={{ height: "120px", width: "120px", marginTop: "-2rem" }}
@@ -47,61 +57,28 @@ const AllBabies = () => {
               </Col>
               <Col className=" col-7 mt-3 mb-2 ms-md-2">
                 <div>
-                  <h5 style={{ color: "blue" }}>Doctor: karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
+                  <h3 style={{ color: "blue" }} className='mb-3'>{name}</h3>
+                  <h5 className='mb-2'>Gender: {gender}</h5>
+                  <h5 className='mb-2'>height: {height} Centimeter</h5>
+                  <h5 className='mb-2'>weight: {weight} gram </h5>
+                  <h5 className='mb-2'>headDiameter: {headDiameter} Centimeter</h5>
+                  <h5 className='mb-2'>age: 30 months</h5>
                 </div>
               </Col>
-            </Row>
-            <Row className="d-flex mb-4" id={d.colm2}>
-              <Col
-                className="col-3 align-self-center me-4 ms-md-4"
-                style={{ height: "120px", width: "120px", marginTop: "-2rem" }}
-              >
-                <img
-                  src="babyy.jpg"
-                  alt=""
-                  className="mx-0 px-0  rounded-pill img-responsive"
-                  style={{ height: "110px", width: "110px" }}
-                />
-              </Col>
-              <Col className=" col-7 mt-3 mb-2 ms-md-2">
-                <div>
-                  <h5 style={{ color: "blue" }}>Doctor: karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                </div>
-              </Col>
-            </Row>{" "}
-            <Row className="d-flex mb-4" id={d.colm2}>
-              <Col
-                className="col-3 align-self-center me-4 ms-md-4"
-                style={{ height: "120px", width: "120px", marginTop: "-2rem" }}
-              >
-                <img
-                  src="babyy.jpg"
-                  alt=""
-                  className="mx-0 px-0  rounded-pill img-responsive"
-                  style={{ height: "110px", width: "110px" }}
-                />
-              </Col>
-              <Col className=" col-7 mt-3 mb-2 ms-md-2">
-                <div>
-                  <h5 style={{ color: "blue" }}>Doctor: karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                  <h5>karim Benzema</h5>
-                </div>
-              </Col>
-            </Row>
+            </Row>))):<></>}
+            {babies.length === 0 && loud && (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+            )
+}
+{babies.length === 0 && !loud && x && (
+          <p className="align-self-center">
+            you donn't have any babies
+              <AddBaby/>
+          
+          </p>
+)}
           </Col>
         </Row>
       </Container>

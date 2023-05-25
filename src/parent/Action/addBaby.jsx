@@ -8,14 +8,11 @@ import { vacBabyContext } from "../../data/vacBabydata";
 import axios from "axios";
 import { useContext } from "react";
 const AddBaby = () => {
-  const userauth=useContext(vacBabyContext)
-  console.log("token : "+userauth.token)
-  console.log(userauth.mad)
-
+  const userauth = useContext(vacBabyContext);
   const [show, setShow] = useState(false);
+  const [birthDate, setBirthDate] = useState("");
   const [vals, setVals] = useState({
     name: "",
-    birthDate: "",
     weight: "",
     headDiameter: "",
     gender: "",
@@ -37,20 +34,25 @@ const AddBaby = () => {
     last = today.getFullYear() - 3 + "-" + mon + "-" + day;
   const validate = (e) => {
     e.preventDefault();
-    setErrors(AddBabyValidate(vals));
-    let xc = AddBabyValidate(vals);
+    const allvals = vals;
+    allvals.birthDate = birthDate;
+    setErrors(AddBabyValidate(allvals));
+    let xc = AddBabyValidate(allvals);
+    console.log("dfgdfgdf  " + birthDate);
     if (xc.name === "") {
-      var json = JSON.stringify(vals);
+      var json = JSON.stringify(allvals);
       axios
-        .post(
-          "https://infant-diary-backend.onrender.com/api/v1/child",
-          json,
-          { headers: { "Content-Type": "application/json" ,'token': `Bearer ${userauth.token}`} }
-        )
+        .post("https://infant-diary-backend.onrender.com/api/v1/child", json, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            token: `${userauth.token}`,
+          },
+        })
         .then((res) => {
           if (res.status === 200) {
             setShow(false);
-            window.location.reload();
+            userauth.setChange(!userauth.change);
           } else {
             console.log(res.data.Error);
           }
@@ -60,7 +62,12 @@ const AddBaby = () => {
   };
   return (
     <div className="mt-3 mb-3 text-center ">
-      <Button variant="primary" onClick={handleShow} id={d.btn2} style={{height:'2.5rem'}}>
+      <Button
+        variant="primary"
+        onClick={handleShow}
+        id={d.btn2}
+        style={{ height: "2.5rem" }}
+      >
         Add new Baby
       </Button>
       <Modal show={show} onHide={handleClose} className="my-auto">
@@ -98,7 +105,9 @@ const AddBaby = () => {
                 required
                 id={d.controlx}
                 value={vals.birthDate}
-                onChange={handleInput}
+                onChange={(e) =>
+                  setBirthDate(e.target.value.replaceAll("-", "/"))
+                }
                 x="true"
                 name="birthDate"
                 min={last}
@@ -116,8 +125,7 @@ const AddBaby = () => {
               <Form.Control
                 type="number"
                 placeholder="Enter weight in Gm"
-                max={20}
-                min={10}
+                min={1000}
                 required
                 id={d.controlx}
                 value={vals.weight}
@@ -137,8 +145,7 @@ const AddBaby = () => {
               <Form.Control
                 type="number"
                 placeholder="Enter head Diameter in cm"
-                max={20}
-                min={10}
+                min={1}
                 required
                 id={d.controlx}
                 value={vals.headDiameter}
@@ -158,8 +165,7 @@ const AddBaby = () => {
               <Form.Control
                 type="number"
                 placeholder="Enter height in cm"
-                max={20}
-                min={10}
+                min={30}
                 required
                 id={d.controlx}
                 name="height"
@@ -175,11 +181,7 @@ const AddBaby = () => {
               </Form.Label>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicPassword"
-              id={d.coll2}
-            >
+            <Form.Group className="mb-3" id={d.coll2}>
               <Form.Select
                 id={d.controlx}
                 aria-label="Default select example"
