@@ -14,11 +14,11 @@ console.log("token =  "+ userauth.token)
 console.log(userauth.mad)
 
     return (
-        <Container className='justify-content-center ' id={d.cont}>
+        <div className='justify-content-center ' id={d.cont}>
           <Slider className='mb-2'/>
           <Mybabies/>
           <SliderDoctor/>
-        </Container>
+        </div>
     );
 }
 

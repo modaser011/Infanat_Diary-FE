@@ -8,7 +8,7 @@ const Cart = () => {
         <h1 style={{color:'blue'}}>
           All Vaccine for baby
         </h1>
-        <hr className="mb-3"/>
+        <hr className="mb-3" />
         <Table 
           responsive="xs"
           striped
@@ -188,10 +188,9 @@ const Cart = () => {
                   }}
                 >
                   <img
-                    src="shutterstock_1866306277.jpg"
+                    src="../../assets/shutterstock_1866306277.jpg"
                     style={{ height: "6rem", width: "9rem" }}
                     alt="n"
-                
                   />
                 </div>
               </td>

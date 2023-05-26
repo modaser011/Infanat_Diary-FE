@@ -78,6 +78,9 @@ const Mybabies = () => {
   const { babies, loud, x, setX, Detailschild,change} = useContext(vacBabyContext);
 
   useEffect(() => {
+    setTimeout(() => {
+      setX(true);
+    }, 1000);
     Detailschild();
   }, [change]);
 
@@ -111,9 +114,9 @@ const Mybabies = () => {
         )}
         <Slider {...settings} className="card__container--inner">
           {babies.length >= 1 ? (
-            babies.map(({ name }, idx) => (
+            babies.map(({ name ,_id}, idx) => (
               <Card id={d.card} key={idx} style={{ width: "18rem" }}>
-                <Link to="/" id={d.link} w-50>
+                <Link to={`/babyPage/${_id}`} id={d.link} w-50>
                   <Card.Img
                     id={d.card_img}
                     className="justify-content-center text-center"

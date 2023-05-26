@@ -48,7 +48,7 @@ console.log('token is = '+token)
         }
       });
   };
-
+const [babyId,setBabyId]=useState('')
   const [succ, setSucc] = useState(false);
   console.log(succ);
 
@@ -72,7 +72,7 @@ console.log('token is = '+token)
         Detailschild,
         loud2,
         token,
-        setToken,mad,setMad,change,setChange
+        setToken,mad,setMad,change,setChange,babyId,setBabyId
       }}
     >
       {children}

@@ -9,10 +9,13 @@ import axios from "axios";
 import { useContext } from "react";
 const AddBaby = () => {
   const userauth = useContext(vacBabyContext);
+  console.log("token : " + userauth.token);
+  console.log(userauth.mad);
+
   const [show, setShow] = useState(false);
-  const [birthDate, setBirthDate] = useState("");
   const [vals, setVals] = useState({
     name: "",
+    birthDate: "",
     weight: "",
     headDiameter: "",
     gender: "",
@@ -32,15 +35,14 @@ const AddBaby = () => {
     day = today.getDate() <= 9 ? "0" + (today.getDate() + 1) : today.getDate(),
     date = today.getFullYear() + "-" + mon + "-" + day,
     last = today.getFullYear() - 3 + "-" + mon + "-" + day;
-  const validate = (e) => {
+    const validate = (e) => {
     e.preventDefault();
-    const allvals = vals;
-    allvals.birthDate = birthDate;
-    setErrors(AddBabyValidate(allvals));
-    let xc = AddBabyValidate(allvals);
-    console.log("dfgdfgdf  " + birthDate);
+    const allVals=vals      
+    allVals.birthDate=vals.birthDate.replaceAll('-','/')
+    setErrors(AddBabyValidate(allVals));
+    let xc = AddBabyValidate(allVals);
     if (xc.name === "") {
-      var json = JSON.stringify(allvals);
+      var json = JSON.stringify(allVals);
       axios
         .post("https://infant-diary-backend.onrender.com/api/v1/child", json, {
           headers: {
@@ -52,8 +54,8 @@ const AddBaby = () => {
         .then((res) => {
           if (res.status === 200) {
             setShow(false);
-            userauth.setChange(!userauth.change);
-          } else {
+userauth.setChange(!userauth.change)      
+} else {
             console.log(res.data.Error);
           }
         })
@@ -105,9 +107,7 @@ const AddBaby = () => {
                 required
                 id={d.controlx}
                 value={vals.birthDate}
-                onChange={(e) =>
-                  setBirthDate(e.target.value.replaceAll("-", "/"))
-                }
+                onChange={handleInput}
                 x="true"
                 name="birthDate"
                 min={last}
@@ -145,6 +145,7 @@ const AddBaby = () => {
               <Form.Control
                 type="number"
                 placeholder="Enter head Diameter in cm"
+                
                 min={1}
                 required
                 id={d.controlx}
@@ -181,7 +182,10 @@ const AddBaby = () => {
               </Form.Label>
             </Form.Group>
 
-            <Form.Group className="mb-3" id={d.coll2}>
+            <Form.Group
+              className="mb-3"
+              id={d.coll2}
+            >
               <Form.Select
                 id={d.controlx}
                 aria-label="Default select example"

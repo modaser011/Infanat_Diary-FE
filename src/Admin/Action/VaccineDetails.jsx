@@ -52,11 +52,11 @@ useEffect(() => {
     
     <div className="vaccinedetails__container mx-start justify-content-center mx-auto ">
       {(Object.keys(details).length>=1)?<div className="vaccinedetails container bg-white">
-        {/* Left */}
+        
         <div className="vaccinedetails__left">
           <img className="vaccinedetails__image" src={vaccine} alt="" />
         </div>
-        {/* Right */}
+       
         <div className="vaccinedetails__right d-block">
           <h1 className="vaccinedetails__header">{details.name}</h1>
           <div>

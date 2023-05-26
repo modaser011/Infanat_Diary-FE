@@ -79,7 +79,7 @@ const SliderDoctor = () => {
         <div className="d-flex justify-content-between align-items-start mx-2">
           <h1>Doctors</h1>
           <Link 
-            to="/allDoctors"
+            to="/allBabies"
             className="d-flex align-self-end"
             style={{ textDecoration: "none", fontWeight: "600" }}
           >

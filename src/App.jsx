@@ -199,7 +199,6 @@ function App() {
             <Route path="/RegisterHos" element={<RegisterHos />} />
             <Route path="/chatting" element={<Chatting />} />
             <Route path="/article" element={<Article />} />
-            {/* <Route path ="/myBabies" element={<Babydata><Mybabies/></Babydata> }/> */}
             <Route path="/vaccine/:id" element={<VaccineDetails />} />
             <Route
               path="/allVaccines"
@@ -213,7 +212,7 @@ function App() {
             <Route path="/allDoctors" element={<AllDoctors />} />
             <Route path="/allBabies" element={<AllBabies />} />
             BabyPage
-            <Route path="/babyPage" element={<BabyPage />} />
+            <Route path="/babyPage/:id" element={<BabyPage />} />
 
             <Route path="/parent" element={<Parent/>} />
             

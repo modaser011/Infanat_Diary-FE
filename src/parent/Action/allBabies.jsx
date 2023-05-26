@@ -1,19 +1,22 @@
 import React, { useContext, useEffect } from 'react';
 import d from "./allDoc.module.css";
-import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import AddBaby from './addBaby';
 import { vacBabyContext } from '../../data/vacBabydata';
+import { Link } from 'react-router-dom';
 
 const AllBabies = () => {
   const { babies, loud, x, setX, Detailschild,change} = useContext(vacBabyContext);
 
   useEffect(() => {
+    setTimeout(() => {
+      setX(true);
+    }, 1000);
     Detailschild();
   }, [change]);
 
     return (
-        <Container
-        fluid
+        <div
         id={d.cont}
         className="justify-content-center align-content-center"
       >
@@ -42,7 +45,8 @@ const AllBabies = () => {
   
           <Col md={true} className="col-md-9 mx-0 mt-3 mt-md-0">
           {babies.length >= 1 ? ( 
-           babies.map(({ name,gender,headDiameter,height,weight }, idx) => (
+           babies.map(({ name,gender,headDiameter,height,weight,_id }, idx) => (
+            <Link to={`/babyPage/${_id}`} style={{textDecoration:'none',color:'black'}}>
           <Row className="d-flex mb-4" id={d.colm2}>
               <Col
                 className="col-3 align-self-center me-4 ms-md-4"
@@ -65,7 +69,7 @@ const AllBabies = () => {
                   <h5 className='mb-2'>age: 30 months</h5>
                 </div>
               </Col>
-            </Row>))):<></>}
+            </Row></Link>))):<></>}
             {babies.length === 0 && loud && (
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -73,15 +77,11 @@ const AllBabies = () => {
             )
 }
 {babies.length === 0 && !loud && x && (
-          <p className="align-self-center">
-            you donn't have any babies
-              <AddBaby/>
-          
-          </p>
+         <Alert variant='warning'> You don't have any babies</Alert>
 )}
           </Col>
         </Row>
-      </Container>
+      </div>
     );
 }
 
