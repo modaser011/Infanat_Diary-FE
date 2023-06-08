@@ -2,13 +2,11 @@ import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import d from "./babies.module.css";
 import AddBaby from "./addBaby";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import Slider from "react-slick";
 import { useContext } from "react";
 import { vacBabyContext } from "../../data/vacBabydata";
 import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import { VacBabydata } from "../../data/vacBabydata";
 function Right(props) {
   const { className, style, onClick } = props;
   return (
@@ -35,7 +33,6 @@ function Left(props) {
   );
 }
 const Mybabies = () => {
- 
   var settings = {
     dots: true,
     infinite: false,
@@ -98,7 +95,6 @@ const Mybabies = () => {
     className="d-flex align-self-end"
     style={{ textDecoration: "none", fontWeight: "600" }}
   >
-    
     <p id={d.lnk}>See all</p>
     <img
       src="pngegg.png"

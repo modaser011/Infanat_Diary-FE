@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Alert, Button } from "react-bootstrap";
@@ -55,9 +55,6 @@ const AddVaccine = ({ z }) => {
         })
         .catch((err) => alert(err.response.data.message));
     }
-  };
-  const sd = () => {
-    alert(succ);
   };
   return (
     <div className="mt-3 mb-3 text-center ">

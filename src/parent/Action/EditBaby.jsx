@@ -7,26 +7,49 @@ import AddBabyValidate from "./addBabyValidate";
 import { vacBabyContext } from "../../data/vacBabydata";
 import axios from "axios";
 import { useContext } from "react";
-const AddBaby = () => {
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+const EditBaby = () => {
   const userauth = useContext(vacBabyContext);
   console.log("token : " + userauth.token);
-  console.log(userauth.mad);
+  const ID = useParams();
+  console.log(ID.id);
 
-  const [show, setShow] = useState(false);
+  const [details, setDetails] = useState({});
+  const detailsVac = async () => {
+    await axios
+      .get(
+        `https://infant-diary-backend.onrender.com/api/v1/child/${ID.id}`,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            token: `${userauth.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setDetails(res.data.document);
+        } else {
+          alert(res.data.Error);
+        }
+      });
+  };
+const [show, setShow] = useState(false);
   const [vals, setVals] = useState({
-    name: "",
-    birthDate: "",
-    weight: "",
-    headDiameter: "",
-    gender: "",
-    height: "",
+    name: d,
+    birthDate:details.birthDate===undefined?'aa':details.birthDate.replaceAll('/','-'),
+    weight: details.weight,
+    headDiameter: details.headDiameter,
+    gender: details.gender,
+    height: details.height,
   });
   const handleInput = (e) => {
     setVals((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const [errors, setErrors] = useState({});
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   var today = new Date();
   let mon =
       today.getMonth() + 1 <= 9
@@ -35,21 +58,19 @@ const AddBaby = () => {
     day = today.getDate() <= 9 ? "0" + (today.getDate() + 1) : today.getDate(),
     date = today.getFullYear() + "-" + mon + "-" + day,
     last = today.getFullYear() - 3 + "-" + mon + "-" + day;
+    useEffect(() => {
+        detailsVac();
+      }, [show]);
     const validate = (e) => {
     e.preventDefault();
-    const allVals=vals
-    const x=allVals.birthDate
-    allVals.birthDate=x.replaceAll('-','/')
+    const allVals=vals      
     setErrors(AddBabyValidate(allVals));
     let xc = AddBabyValidate(allVals);
-    if(xc.name!=="")
-    {      vals.birthDate=vals.birthDate.replaceAll('/','-')
-  }
     if (xc.name === "") {
       var json = JSON.stringify(allVals);
-      vals.birthDate=vals.birthDate.replaceAll('/','-')
+      allVals.birthDate=allVals.birthDate.replaceAll('/','-')
       axios
-        .post("https://infant-diary-backend.onrender.com/api/v1/child", json, {
+        .put(`https://infant-diary-backend.onrender.com/api/v1/child/${ID.id}`, json, {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
@@ -67,15 +88,27 @@ userauth.setChange(!userauth.change)
         .catch((err) => alert(err.response.data.message));
     }
   };
+  const handleShow = () => {setShow(true)
+    const birth=details.birthDate.replaceAll('/','-')
+    setVals({
+        name: details.name,
+        birthDate:birth,
+        weight: details.weight,
+        headDiameter: details.headDiameter,
+        gender: details.gender,
+        height: details.height,
+      });
+};
   return (
-    <div className="mt-3 mb-3 text-center ">
+    <div className="mb-3 text-center ">
       <Button
         variant="primary"
         onClick={handleShow}
         id={d.btn2}
-        style={{ height: "2.5rem" }}
+        className=" mt-1 me-5"
+        style={{ width: "8rem",height:'2.5rem'}}
       >
-        Add new Baby
+        Edit
       </Button>
       <Modal show={show} onHide={handleClose} className="my-auto">
         <Modal.Header style={{ border: "none" }} closeButton></Modal.Header>
@@ -214,7 +247,7 @@ userauth.setChange(!userauth.change)
                 type="submit"
                 id={d.buttun}
               >
-                Add
+                update
               </button>
             </Form.Group>
           </Form>
@@ -224,4 +257,4 @@ userauth.setChange(!userauth.change)
   );
 };
 
-export default AddBaby;
+export default EditBaby

@@ -55,7 +55,6 @@ const [babyId,setBabyId]=useState('')
   const addvac = (rr) => {
     setSucc(!rr);
   };
-  const [y, setY] = useState(true);
   return (
     <vacBabyContext.Provider
       value={{

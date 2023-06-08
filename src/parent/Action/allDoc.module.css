@@ -1,4 +1,5 @@
-#cont {
+#cont,
+#contvac {
     justify-content: center;
     place-items: center center;
     font-weight: 900;

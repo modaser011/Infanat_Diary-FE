@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, Container, Form, Row, Table } from "react-bootstrap";
-import d from "./allDoc.module.css";
+import { Button, Container, Form, Table } from "react-bootstrap";
 const Cart = () => {
   return (
-    <Container className="py-2 bg-white" id={d.cont}>
-      <Container className="mx-auto mt-1" style={{ overflow: "scroll" }}>
+    <Container className="py-2 bg-white" id='contvac'>
+      <Container className="mx-auto pt-1" >
         <h1 style={{color:'blue'}}>
           All Vaccine for baby
         </h1>
         <hr className="mb-3" />
+        <div style={{ overflow: "scroll" }}>
         <Table 
           responsive="xs"
           striped
@@ -347,6 +347,7 @@ const Cart = () => {
            
           </tbody>
         </Table>
+        </div>
       </Container>
     </Container>
   );

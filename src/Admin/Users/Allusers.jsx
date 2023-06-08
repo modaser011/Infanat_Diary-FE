@@ -2,7 +2,6 @@ import React from 'react';
 import {Col,Row, Container} from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 import d from "./Users.module.css";
-import Form from 'react-bootstrap/Form';
 const Allusers = ({searcher,setsearcher,search}) => {
     const datax=searcher.map(({png,id,link},idx)=>(
         <tr key={idx} className="align-content-center">

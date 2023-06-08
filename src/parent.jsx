@@ -1,11 +1,8 @@
 import React from 'react';
-import { Col, Container } from 'react-bootstrap';
-import {Row,Card} from "react-bootstrap";
-import { Link } from 'react-router-dom';
 import d from './info.module.css'
 import Slider from './Slider';
 import Mybabies from './parent/Action/Mybabies';
-import { VacBabydata, vacBabyContext } from "./data/vacBabydata";
+import {vacBabyContext } from "./data/vacBabydata";
 import SliderDoctor from './parent/Action/SliderDoctor';
 import { useContext } from 'react';
 const Parent = () => {
