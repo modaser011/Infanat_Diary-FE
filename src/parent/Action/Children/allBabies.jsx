@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import d from "./allDoc.module.css";
+import d from "./allchild.module.css";
 import { Alert, Col, Form, Row, Spinner } from "react-bootstrap";
 import AddBaby from './addBaby';
-import { vacBabyContext } from '../../data/vacBabydata';
+import { vacBabyContext } from '../../../data/vacBabydata';
 import { Link } from 'react-router-dom';
 
 const AllBabies = () => {

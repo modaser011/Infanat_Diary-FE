@@ -1,11 +1,11 @@
-import { Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import d from "./babies.module.css";
 import AddBaby from "./addBaby";
 import React, { useEffect} from "react";
 import Slider from "react-slick";
 import { useContext } from "react";
-import { vacBabyContext } from "../../data/vacBabydata";
+import { vacBabyContext } from "../../../data/vacBabydata";
 import { Link } from "react-router-dom";
 function Right(props) {
   const { className, style, onClick } = props;
@@ -72,12 +72,8 @@ const Mybabies = () => {
       },
     ],
   };
-  const { babies, loud, x, setX, Detailschild,change} = useContext(vacBabyContext);
-
+  const { babies, loud2, x, setX, Detailschild,change} = useContext(vacBabyContext);
   useEffect(() => {
-    setTimeout(() => {
-      setX(true);
-    }, 1000);
     Detailschild();
   }, [change]);
 
@@ -130,14 +126,15 @@ const Mybabies = () => {
             <></>
           )}
         </Slider>
-        {babies.length === 0 && loud && (
+        {babies.length === 0 && loud2 && (
           <p className="align-self-start">loading...</p>
         )}
-        {babies.length === 0 && !loud && x && (
+        {babies.length === 0 && !loud2 &&(
           <p className="align-self-center">
-            there is no Babies
-            <AddBaby/>
+             <Alert variant='warning'>There is no Babies</Alert>  
+          <p> You can add new baby from This page</p><Link to='/allBabies'>All Children</Link>
           </p>
+          
         )}
       </Container>
     </div>

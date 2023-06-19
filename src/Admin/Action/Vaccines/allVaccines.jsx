@@ -6,8 +6,8 @@ import d from "./vaccine.module.css";
 import AddVaccine from "./addVaccine";
 import Slider from "react-slick";
 import { useContext } from "react";
-import { vacBabyContext } from "../../data/vacBabydata";
-import { VacBabydata } from "../../data/vacBabydata";
+import { vacBabyContext } from "../../../data/vacBabydata";
+import { VacBabydata } from "../../../data/vacBabydata";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 function Right(props) {

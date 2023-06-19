@@ -1,14 +1,13 @@
 import React from 'react';
 import d from './info.module.css'
 import Slider from './Slider';
-import Mybabies from './parent/Action/Mybabies';
+import Mybabies from './parent/Action/Children/Mybabies';
 import {vacBabyContext } from "./data/vacBabydata";
-import SliderDoctor from './parent/Action/SliderDoctor';
+import SliderDoctor from './parent/Action/Doctors/SliderDoctor';
 import { useContext } from 'react';
 const Parent = () => {
     const userauth=useContext(vacBabyContext)
 console.log("token =  "+ userauth.token)
-console.log(userauth.mad)
 
     return (
         <div className='justify-content-center ' id={d.cont}>

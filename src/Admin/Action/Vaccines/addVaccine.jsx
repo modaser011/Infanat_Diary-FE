@@ -6,9 +6,9 @@ import d from "./addVac.module.css";
 import AddVacValidate from "./addVacValidate";
 import axios from "axios";
 
-import { vacBabyContext } from "../../data/vacBabydata";
-const AddVaccine = ({ z }) => {
-  const { vacc, setSucc, succ } = useContext(vacBabyContext);
+import { vacBabyContext } from "../../../data/vacBabydata";
+const AddVaccine = () => {
+  const data1 = useContext(vacBabyContext);
   //console.log(succ)
   const [show, setShow] = useState(false);
   const [compulsory, setCompulsory] = useState("");
@@ -26,9 +26,7 @@ const AddVaccine = ({ z }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log("addVac", vacc);
   const validate = (e) => {
-    setSucc(!succ);
     e.preventDefault();
     setErrors(AddVacValidate(vals));
     const allvals = vals;
@@ -41,13 +39,16 @@ const AddVaccine = ({ z }) => {
         .post(
           "https://infant-diary-backend.onrender.com/api/v1/vaccine",
           json,
-          { headers: { "Content-Type": "application/json" } }
-        )
+          {headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            token: `${data1.token}`,
+          },
+        }
+      )
         .then((res) => {
           if (res.status === 200) {
-            z();
-            setSucc(true);
-            setTimeout(() => {}, 500);
+           data1.setChangeVacc(!data1.changeVacc)
             setShow(false);
           } else {
             alert(res.data.Error);

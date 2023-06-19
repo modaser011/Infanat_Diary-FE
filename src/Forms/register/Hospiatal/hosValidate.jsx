@@ -1,10 +1,6 @@
 const HosValidate = (vals) => {
     let errors={}
-    
     const letter = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/.test(vals.name);
-    
-    
-    
     if((vals.name.length >= 8 && vals.name.length <= 15)&&letter)
   {
    errors.name=""

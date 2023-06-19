@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Button, Card, Container, Col, Row, Spinner } from "react-bootstrap";
 import d from "./babies.module.css";
-import photo from "../../assets/babyy.jpg";
+import photo from "../../../assets/babyy.jpg";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { vacBabyContext } from "../../data/vacBabydata";
+import { vacBabyContext } from "../../../data/vacBabydata";
 import axios from "axios";
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
@@ -14,7 +14,6 @@ const BabyData = () => {
   const nav=useNavigate()
   const tkn = useContext(vacBabyContext);
   const ID = useParams();
-  console.log(ID.id);
   var today = new Date();
   let mon =
       today.getMonth() + 1 <= 9
@@ -142,7 +141,7 @@ const BabyData = () => {
               </div>
             </>
           ) : (
-            <Spinner animation="border" role="status">
+            <Spinner animation="border" role="status" className="mx-auto">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           )}

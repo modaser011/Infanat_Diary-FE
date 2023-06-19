@@ -1,0 +1,80 @@
+.post__container {
+    display: flex;
+    border-radius: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    height: fit-content;
+    padding: 2rem;
+}
+
+.drop:active {
+    border: 'none';
+    outline: 'none';
+    color: 'white';
+    scroll-behavior: 'smooth';
+}
+
+.drop option {
+    Border: none;
+}
+
+.drop {
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    color: 'white';
+    background-color: rgb(255, 255, 255);
+}
+
+.post__left {
+    flex: 1;
+}
+
+.post__imgContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.post__img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.post__right {
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post__rightUsername>span {
+    color: #006AD4;
+}
+
+.post__body>p {
+    text-align: start;
+}
+
+.post__comment {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.post__comment>span {
+    font-size: 1rem;
+}
+
+.post__commentImage {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 1000px) {
+    .post__container {
+        gap: 2rem;
+    }
+}

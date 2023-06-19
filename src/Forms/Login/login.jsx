@@ -18,6 +18,8 @@ export function Login() {
     e.preventDefault();
     const vals = { email: email, password: password };
     var json = JSON.stringify(vals);
+    if(userauth.select==='Parent')
+    {
     const data = await axios
       .post(
         "https://infant-diary-backend.onrender.com/api/v1/parent/signin",
@@ -35,7 +37,25 @@ export function Login() {
       })
       .catch((err) => seterr(err.response.data.message));
   };
-
+  if(userauth.select==='Admin')
+  {
+    const data = await axios
+    .post(
+      "https://infant-diary-backend.onrender.com/api/v1/admin/signin",
+      json,
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then((res) => {
+      if (res.status === 200) {
+        userauth.setToken(res.data.token);
+        nav("/vaccines");
+      } else {
+        console.log(res.data.Error);
+      }
+    })
+    .catch((err) => seterr(err.response.data.message));
+};
+  }
   return (
     <Container
       id={d.cont}

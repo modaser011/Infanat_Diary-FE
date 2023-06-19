@@ -1,44 +1,174 @@
 import React from 'react';
-import {Col,Row, Container} from "react-bootstrap";
-import Table from 'react-bootstrap/Table';
-import d from "./Users.module.css";
-const Allusers = ({searcher,setsearcher,search}) => {
-    const datax=searcher.map(({png,id,link},idx)=>(
-        <tr key={idx} className="align-content-center">
-        <td className='ps-3'>{idx+1}</td>
-        <td><img id={d.img}src={png} alt="" className='me-4'/>{id}</td>
-        <td> rr</td>
-        <td className="d-flex justify-content-end"> <button className="d-flex justify-content-center text-center align-items-center me-3" variant="primary" type="submit" id={d.buttun2}>
-    <img src="google.png" className="h-50 h-50 me-3" alt="" id={d.img2}/>
-      suspend
-        </button>
-        <button className="d-flex justify-content-center text-center align-items-center" variant="primary" type="submit" id={d.buttun2}>
-    <img src="google.png" className="h-50 h-50 me-3" alt="" id={d.img2}/>
-     delete
-        </button></td>
-      </tr>
-    )
-    )
+import { Button, Container, Table,Form } from "react-bootstrap";
+import delete1 from "../../assets/wdel.png";
+import suspend from "../../assets/pause.png";
+
+const Allusers = () => {
     return (
-        <Container fluid className="justify-content-center d-flex " id={d.cont2}>
-        <Row className=" justify-content-center mx-auto my-auto align-content-center container "id={d.Row}> 
-        <Col className="col-md-11  col-lg-11  justify-content-center my-auto mx-auto text-center pb-md-3">
-        <Table id={d.table} className='my-auto mt-4 bg-white'>
-      <thead>
-        <tr>
-          <th className='ps-3'>No</th>
-          <th>First Name</th>
-          <th> xx</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-     {datax}
-      </tbody>
-    </Table>
-       </Col>
-       </Row>
-     </Container>
+      <Container className="py-2 bg-white" id='contvac'>
+      <Container className="mx-auto pt-1" >
+        <div className='d-flex justify-content-between py-auto'><h1 style={{color:'blue'}}>
+          All Users
+        </h1>
+        <Form.Control
+                className="ms-2 my-auto text-center "
+                style={{
+                  width: "20%",
+                  height: "2rem",
+                }}
+                type="search"
+                placeholder="Search for user"
+                aria-label="Search"
+              />
+              </div>
+        <hr className="mb-3" />
+
+        <div style={{ overflow: "scroll" }}>
+          <div>
+        
+              
+              </div>
+        <Table 
+          responsive="xs"
+          className="me-auto my-auto text-center"
+          striped
+          style={{}}
+        >
+          <tbody>
+          <tr style={{ backgroundColor:'white' ,color:'black' , borderBottom:'1px solid'}} className='bg-light'>
+              <td >
+                <h6 className="mx-3"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'0rem'
+                  }}
+                >
+                  Name
+                </h6>
+              </td>
+              <td >
+                <h6 className="mx-3"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'0rem'
+                  }}
+                >
+                  Role
+                </h6>
+              </td>
+              <td >
+                <h6 className="mx-3"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'0rem'
+                  }}
+                >
+                  Email
+                </h6>
+              </td>
+              <td
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverFlow: "ellipsis",
+                }}
+              >
+              <h6 style={{
+                  marginTop:'0rem',
+                  fontWeight:'normal'
+              }}>Acctions</h6>
+              </td>
+            </tr>
+    
+            <tr>
+              <td >
+                <div className='d-flex'
+                style={{
+                    whiteSpace: "nowrap",
+                    width: "fit-content",
+                }}>
+              <img
+                  src="babyy.jpg"
+                  alt=""
+                  className="ms-4 px-0  rounded-pill img-responsive"
+                  style={{ height: "55px", width: "55px" }}
+                />
+                <h6 className="ms-3"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'1rem'
+                  }}
+                >
+                  Ahmed Mohsen
+                </h6></div>
+              </td>
+              <td >
+                <h6 className=""
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'1rem'
+                  }}
+                >
+                  Doctor
+                </h6>
+              </td>
+              <td >
+                <h6 className="mx-3"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverFlow: "ellipsis",
+                    marginTop:'1rem'
+                  }}
+                >
+                  modasergomis@gmail.com
+                </h6>
+              </td>
+              <td
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverFlow: "ellipsis",
+                  
+                }}
+              >
+                <Button variant="primary" className=" mt-2 mx-3" style={{color:'white'}}>
+                <img
+                    src={suspend}
+                    alt=""
+                   className='me-2'
+                    style={{ height: "18px", width: "18px", cursor: "pointer",marginTop:'-.2rem' }}
+                  />
+                  suspend
+                </Button>
+                <Button variant="danger" className=" mt-2 mx-3">
+                <img
+                    src={delete1}
+                    alt=""
+                   className='me-2'
+                    style={{ height: "18px", width: "18px", cursor: "pointer",marginTop:'-.2rem' }}
+                  />
+                  Remove
+                </Button>
+
+              </td>
+            </tr>
+            
+          </tbody>
+        </Table>
+        </div>
+      </Container>
+    </Container>
     );
 }
 

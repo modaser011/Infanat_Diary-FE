@@ -4,14 +4,13 @@ import Modal from "react-bootstrap/Modal";
 import { Alert, Button } from "react-bootstrap";
 import d from "./babies.module.css";
 import AddBabyValidate from "./addBabyValidate";
-import { vacBabyContext } from "../../data/vacBabydata";
+import { vacBabyContext } from "../../../data/vacBabydata";
 import axios from "axios";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 const EditBaby = () => {
   const userauth = useContext(vacBabyContext);
-  console.log("token : " + userauth.token);
   const ID = useParams();
   console.log(ID.id);
 

@@ -5,17 +5,19 @@ import Navbar from 'react-bootstrap/Navbar';
 import d from "./Navbar.module.css";
 import Bounce from 'react-reveal/Bounce';
 import {Link} from "react-router-dom";
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import Fade from 'react-reveal/Fade';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from "../assets/lgo.png";
 import burger from "../assets/clipart282138.png";
 import { Button } from "react-bootstrap";
+import { vacBabyContext } from '../data/vacBabydata';
+import {useNavigate} from "react-router-dom";
 
 function MyNavbar({r}) {
-
+const data1 = useContext(vacBabyContext);
+const nav=useNavigate()
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow((s) => !s);
 
@@ -45,7 +47,7 @@ function MyNavbar({r}) {
       <Offcanvas show={show} onHide={handleClose} scroll='true' id={d.offc}> 
         <Offcanvas.Body>
           <Offcanvas.Header className="justify-content-center text-center">
-           <Link to='/' ><img src={logo} width="100" height="100" onClick={handleClose}
+           <Link to='/post' ><img src={logo} width="100" height="100" onClick={handleClose}
                alt=""/></Link>  
         </Offcanvas.Header>
          {datax}
@@ -61,8 +63,14 @@ function MyNavbar({r}) {
             className="my-2 my-lg-0 me-auto"
             navbarScroll>
           </Nav>
-            <Link to="/RegisterParent"><Button id={d.btn} className="me-3 btn " variant="outline-light">Sign up</Button></Link>
-            <Link to="/login"><Button  id={d.btn}className="" variant="outline-light">Login</Button></Link>
+          {
+          data1.token === null ?(<>
+          <Link to="/RegisterParent"><Button id={d.btn} className="me-3 btn " variant="outline-light">Sign up</Button></Link>
+          <Link to="/user"><Button  id={d.btn} className="" variant="outline-light" >Login</Button></Link></>):<>
+          <Link to="/login"><Button id={d.btn} className="me-3 btn " variant="outline-light"  onClick={data1.logout}>log out</Button></Link>
+</>
+  }            
+  
         </Navbar.Collapse>
       </Container>
     </Navbar>
