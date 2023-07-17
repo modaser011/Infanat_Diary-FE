@@ -69,6 +69,30 @@
     border-radius: 2rem;
 }
 
+#controlx3:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#controlx3 {
+    border-radius: 1rem;
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(204, 204, 204);
+    padding-left: 0.7rem;
+    display: flex;
+    padding-top: 1rem;
+}
+
+#controlx3:focus+#label,
+#controlx3:valid+#label,
+#controlx3[x="true"]+#label {
+    font-size: 85%;
+    transform: translate3d(0, -560%, 0);
+    opacity: 1;
+}
+
 #btn2:active {
     outline: none;
 }

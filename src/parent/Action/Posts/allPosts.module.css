@@ -8,6 +8,28 @@
     background-color: #F5F7FD;
 }
 
+#divaya {
+    border-radius: 1rem;
+    background-color: #e6ebfa;
+}
+
+#com:hover {
+    background-color: #d3d2d2;
+}
+
+#contcol {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    margin-top: -.4rem;
+    min-height: 91.4vh;
+}
+
+#com {
+    width: fit-content;
+    text-align: center;
+    margin-left: 10rem;
+}
+
 #photo {
     border-radius: 50%;
 }

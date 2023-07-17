@@ -30,7 +30,7 @@ const EditQuis = ({_id,body,answer,age,virusName}) => {
               headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json",
-                token: `${userauth.token}`,
+                token: `${localStorage.getItem('token')}`,
               },
             }
           )
@@ -91,22 +91,29 @@ const EditQuis = ({_id,body,answer,age,virusName}) => {
               </Form.Label>
             </Form.Group>
             <Form.Group
-              className="mb-3"
               id={d.coll2}
             >
               <Form.Control
                 as="textarea"
-                placeholder="Write the quistion"
+                placeholder="Write the Question"
                 value={vals.body}
                 name="body"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+Question              </Form.Label>
             </Form.Group>
             <Form.Group
-              className="mb-3"
               id={d.coll2}
             >
               <Form.Control
@@ -115,10 +122,19 @@ const EditQuis = ({_id,body,answer,age,virusName}) => {
                 value={vals.answer}
                 name="answer"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+Answer              </Form.Label>
             </Form.Group>
             <Form.Group className="" id={d.coll2}>
               <button

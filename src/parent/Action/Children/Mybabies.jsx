@@ -1,12 +1,13 @@
-import { Alert, Container } from "react-bootstrap";
+import { Alert, Container, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import d from "./babies.module.css";
-import AddBaby from "./addBaby";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { useContext } from "react";
 import { vacBabyContext } from "../../../data/vacBabydata";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function Right(props) {
   const { className, style, onClick } = props;
   return (
@@ -33,6 +34,7 @@ function Left(props) {
   );
 }
 const Mybabies = () => {
+  const nav = useNavigate();
   var settings = {
     dots: true,
     infinite: false,
@@ -72,7 +74,8 @@ const Mybabies = () => {
       },
     ],
   };
-  const { babies, loud2, x, setX, Detailschild,change} = useContext(vacBabyContext);
+  const { babies, loud2, x, setX, Detailschild, change } =
+    useContext(vacBabyContext);
   useEffect(() => {
     Detailschild();
   }, [change]);
@@ -84,57 +87,67 @@ const Mybabies = () => {
     >
       <Container className="justify-content-center align-content-center align-self-center mt-5 mb-5">
         {babies.length >= 1 ? (
-  <div className="d-flex justify-content-between align-items-start mx-1 mb-3" >
-  <h1>Babies</h1>
-  <Link 
-    to="/allBabies"
-    className="d-flex align-self-end"
-    style={{ textDecoration: "none", fontWeight: "600" }}
-  >
-    <p id={d.lnk}>See all</p>
-    <img
-      src="pngegg.png"
-      style={{ width: "10px", height: "10px" }}
-      className="ms-1 mt-2"
-      alt=""
-    />
-  </Link>          
-  </div>
-  
+          <div className="d-flex justify-content-between align-items-start mx-1 mb-3">
+            <h1>Babies</h1>
+            <Link
+              to="/allBabies"
+              className="d-flex align-self-end"
+              style={{ textDecoration: "none", fontWeight: "600" }}
+            >
+              <p id={d.lnk}>See all</p>
+              <img
+                src="pngegg.png"
+                style={{ width: "10px", height: "10px" }}
+                className="ms-1 mt-2"
+                alt=""
+              />
+            </Link>
+          </div>
         ) : (
           <></>
         )}
+        <Container>
         <Slider {...settings} className="card__container--inner">
           {babies.length >= 1 ? (
-            babies.map(({ name ,_id}, idx) => (
-              <Card id={d.card} key={idx} style={{ width: "18rem" }}>
-                <Link to={`/babyPage/${_id}`} id={d.link} w-50>
-                  <Card.Img
-                    id={d.card_img}
-                    className="justify-content-center text-center"
-                    src="babyy.jpg"
-                  />
-                  <Card.Body className="justify-content-center text-center">
-                    <Card.Title>
-                      <h3 id={d.title}> Name: {name}</h3>
-                    </Card.Title>
-                  </Card.Body>
-                </Link>
+            babies.map(({ name, _id }) => (
+              <Card
+                id={d.card}
+                key={_id}
+                style={{ width: "18rem", cursor: "pointer" }}
+                onClick={() => nav(`/babyPage/${_id}`)}
+              >
+                <Card.Img
+                  id={d.card_img}
+                  className="justify-content-center text-center"
+                  src="babyy.jpg"
+                  style={{ height: "200px", cursor: "pointer" }}
+                />
+                <Card.Body
+                  className="justify-content-center text-center"
+                  style={{ cursor: "pointer" }}
+                >
+                  <Card.Title>
+                    <h3 id={d.title}> Name: {name}</h3>
+                  </Card.Title>
+                </Card.Body>
               </Card>
             ))
           ) : (
             <></>
           )}
         </Slider>
+        </Container>
         {babies.length === 0 && loud2 && (
-          <p className="align-self-start">loading...</p>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         )}
-        {babies.length === 0 && !loud2 &&(
+        {babies.length === 0 && !loud2 && (
           <p className="align-self-center">
-             <Alert variant='warning'>There is no Babies</Alert>  
-          <p> You can add new baby from This page</p><Link to='/allBabies'>All Children</Link>
+            <Alert variant="warning">There is no Babies</Alert>
+            <p> You can add new baby from This page</p>
+            <Link to="/allBabies">All Children</Link>
           </p>
-          
         )}
       </Container>
     </div>

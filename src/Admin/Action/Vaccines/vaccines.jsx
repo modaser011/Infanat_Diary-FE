@@ -1,31 +1,54 @@
-import React, { useEffect } from "react";
-import { Alert, Container, Spinner, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Alert, Col, Container, Form, Spinner, Table } from "react-bootstrap";
 import { useContext } from "react";
 import { vacBabyContext } from "../../../data/vacBabydata";
 import vacc from "../../../assets/shutterstock_1866306277.jpg";
 import AddVaccine from "./addVaccine";
 import {useNavigate} from "react-router-dom";
+import d from "./vaccine.module.css";
 const Vaccines = () => {
     const nav=useNavigate()
     const data1 = useContext(vacBabyContext);
+    const[keyword,setKeyword]=useState("")
     useEffect(() => {
         setTimeout(() => {
           data1.setX(true);
         }, 1000);
-        data1.DetailsVac();
-      }, [data1.changeVacc]);
+        data1.searchVac(keyword);
+      }, [data1.changeVacc,keyword]);
   return (
-    <Container className="py-2 bg-white" id='contvac'>
+    <Container className="py-2" id={d.cont} style={{backgroundColor:'#F5F7FD'}}>
       <Container className="mx-auto pt-1" >
-        <div className="d-flex justify-content-between">
-        <h1 style={{color:'blue'}} className="mt-2">
+        <div className="d-flex row justify-content-between">
+       <Col> <h1 style={{color:'#006AD4'}} className="mt-2">
           All Vaccine
-        </h1>
-        <AddVaccine/>
+        </h1></Col>
+        <Col className="col-6"> <Form.Control
+              className="mt-3 text-center"
+              style={{
+                height: "2.4rem",
+              }}
+              type="search"
+              placeholder="Search for vaccine"
+              aria-label="Search"
+              value={keyword}
+              onChange={(e)=>setKeyword(e.target.value)}
+            /> </Col>
+        <Col md={true}> <AddVaccine/></Col>
         </div>
         <hr className="mb-3" />
+
         <div style={{ overflow: "scroll" }}>
-        <Table 
+        {data1.vacc.length === 0 && data1.vaccLoud && (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          )}
+              {data1.vacc.length === 0 && !data1.vaccLoud && (
+            <Alert variant="warning"> There is no Vacccines</Alert>
+          )}
+
+{data1.vacc.length >= 1 ? ( <Table 
           responsive="xs"
           striped
           hover
@@ -88,7 +111,7 @@ const Vaccines = () => {
             </tr>
             {data1.vacc.length >= 1 ? (
             data1.vacc.map(({ name, compulsory, dose,age, _id }, idx) => (
-            <tr key={idx} onClick={()=>nav(`/vaccine/${_id}`)} style={{cursor:'pointer'}}> 
+            <tr key={_id} onClick={()=>nav(`/vaccine/${_id}`)} style={{cursor:'pointer'}}> 
               <td style={{ width: "9rem" }} className="mx-auto my-auto">
                 <div
                   style={{
@@ -164,14 +187,9 @@ const Vaccines = () => {
            
           </tbody>
         </Table> 
-        {data1.vacc.length === 0 && data1.vaccLoud && (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          )}
-          {data1.vacc.length === 0 && !data1.vaccLoud && (
-            <Alert variant="warning"> There is no Vacccines</Alert>
-          )}
+        ) : (
+          <></>
+        )}
         </div>
       </Container>
     </Container>

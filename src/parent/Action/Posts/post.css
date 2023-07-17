@@ -4,6 +4,11 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     height: fit-content;
     padding: 2rem;
+    background-color: #ffffff;
+}
+
+.post__container:hover {
+    background-color: rgb(245, 245, 245);
 }
 
 .drop:active {
@@ -61,6 +66,13 @@
 .post__comment {
     display: flex;
     gap: 0.5rem;
+    cursor: pointer;
+    padding: .3rem;
+}
+
+.post__comment:hover {
+    background-color: rgb(180, 183, 185);
+    border-radius: 1rem;
 }
 
 .post__comment>span {

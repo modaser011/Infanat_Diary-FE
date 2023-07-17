@@ -29,7 +29,7 @@ const AddQuistion = () => {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${userauth.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         }
       )
@@ -47,7 +47,7 @@ const AddQuistion = () => {
   return (
     <div className="mt-3 mb-3 text-center ">
       <Button variant="primary" onClick={handleShow} id={d.btn2}>
-        Add new Quistion
+        Add new Question
       </Button>
       <Modal show={show} onHide={handleClose} className="my-auto">
         <Modal.Header style={{ border: "none" }} closeButton></Modal.Header>
@@ -69,7 +69,7 @@ const AddQuistion = () => {
                 id={d.label}
                 class="form-control-placeholder transition"
               >
-                age
+                Age
               </Form.Label>
             </Form.Group>
             <Form.Group id={d.coll2}>
@@ -87,26 +87,33 @@ const AddQuistion = () => {
                 id={d.label}
                 class="form-control-placeholder transition"
               >
-                virus Name
+                Virus Name
               </Form.Label>
             </Form.Group>
             <Form.Group
-              className="mb-3"
               id={d.coll2}
             >
               <Form.Control
                 as="textarea"
-                placeholder="Write the quistion"
+                placeholder="Write the Question"
                 value={vals.body}
                 name="body"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+Question              </Form.Label>
             </Form.Group>
             <Form.Group
-              className="mb-3"
               id={d.coll2}
             >
               <Form.Control
@@ -115,10 +122,19 @@ const AddQuistion = () => {
                 value={vals.answer}
                 name="answer"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+Answer              </Form.Label>
             </Form.Group>
             <Form.Group className="" id={d.coll2}>
               <button

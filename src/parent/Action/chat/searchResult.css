@@ -1,0 +1,28 @@
+.searchResult{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem;
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+.searchResult:hover{
+    background-color: whitesmoke;
+}
+
+.searchResult > img {
+    object-fit: contain;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.searchResult > p {
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+    font-weight: 600;
+}

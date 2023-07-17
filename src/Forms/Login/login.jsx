@@ -8,8 +8,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { vacBabyContext } from "../../data/vacBabydata";
+import { db } from "../../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 export function Login() {
   const userauth = useContext(vacBabyContext);
+  const { setFirebaseUser } = useContext(vacBabyContext);
   const nav = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -18,44 +22,33 @@ export function Login() {
     e.preventDefault();
     const vals = { email: email, password: password };
     var json = JSON.stringify(vals);
-    if(userauth.select==='Parent')
-    {
     const data = await axios
       .post(
-        "https://infant-diary-backend.onrender.com/api/v1/parent/signin",
+        `https://infant-diary-backend.onrender.com/api/v1/${userauth.select}/signin`,
         json,
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
         if (res.status === 200) {
-          userauth.setToken(res.data.token);
-          userauth.setMad("moda");
-          nav("/parent");
-        } else {
-          console.log(res.data.Error);
+          userauth.updateToken(res.data.token);
+          nav(`/${userauth.select}`);
         }
+      })
+      .then(async () => {
+        const searchResults = [];
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("email", "==", vals.email));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          const dataWithID = { ...doc.data(), id: doc.id };
+          searchResults.push(dataWithID);
+        });
+        localStorage.setItem("currentUser", JSON.stringify(searchResults[0]));
       })
       .catch((err) => seterr(err.response.data.message));
   };
-  if(userauth.select==='Admin')
-  {
-    const data = await axios
-    .post(
-      "https://infant-diary-backend.onrender.com/api/v1/admin/signin",
-      json,
-      { headers: { "Content-Type": "application/json" } }
-    )
-    .then((res) => {
-      if (res.status === 200) {
-        userauth.setToken(res.data.token);
-        nav("/vaccines");
-      } else {
-        console.log(res.data.Error);
-      }
-    })
-    .catch((err) => seterr(err.response.data.message));
-};
-  }
   return (
     <Container
       id={d.cont}
@@ -103,7 +96,7 @@ export function Login() {
                 Password
               </Form.Label>
               <p className="text-end" id={d.p}>
-                <Link to="/forget" id={d.p}>
+                <Link to="/confirmforgetPass" id={d.p}>
                   Fotget Password?
                 </Link>
               </p>
@@ -124,7 +117,7 @@ export function Login() {
               </button>
             </Form.Group>
           </Form>
-          <Form className="text-center mx-3">
+          {/* <Form className="text-center mx-3">
             <Form.Group className="text-center" id={d.coll2}>
               <button
                 className="mb-3 d-flex justify-content-center text-center align-items-center"
@@ -136,7 +129,7 @@ export function Login() {
                 Sign Up with Google
               </button>
             </Form.Group>
-          </Form>
+          </Form> */}
         </Col>
       </Row>
     </Container>

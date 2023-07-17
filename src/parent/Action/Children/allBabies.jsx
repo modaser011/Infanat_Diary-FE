@@ -15,6 +15,7 @@ const AllBabies = () => {
     Detailschild();
   }, [change]);
 
+  
     return (
         <div
         id={d.cont}
@@ -45,8 +46,8 @@ const AllBabies = () => {
   
           <Col md={true} className="col-md-9 mx-0 mt-3 mt-md-0">
           {babies.length >= 1 ? ( 
-           babies.map(({ name,gender,headDiameter,height,weight,_id }, idx) => (
-            <Link to={`/babyPage/${_id}`} style={{textDecoration:'none',color:'black'}} key={idx}>
+           babies.map(({ name,gender,headDiameter,height,weight,_id,measurements }) => (
+            <Link to={`/babyPage/${_id}`} style={{textDecoration:'none',color:'black'}} key={_id}>
           <Row className="d-flex mb-4" id={d.colm2}>
               <Col
                 className="col-3 align-self-center me-4 ms-md-4"
@@ -63,9 +64,9 @@ const AllBabies = () => {
                 <div>
                   <h3 style={{ color: "blue" }} className='mb-3'>{name}</h3>
                   <h5 className='mb-2'>Gender: {gender}</h5>
-                  <h5 className='mb-2'>height: {height} Centimeter</h5>
-                  <h5 className='mb-2'>weight: {weight} gram </h5>
-                  <h5 className='mb-2'>headDiameter: {headDiameter} Centimeter</h5>
+                  <h5 className='mb-2'>height: {measurements[measurements.length-1].height} Centimeter</h5>
+                  <h5 className='mb-2'>weight: {measurements[measurements.length-1].weight} gram </h5>
+                  <h5 className='mb-2'>headDiameter: {measurements[measurements.length-1].headDiameter} Centimeter</h5>
                   <h5 className='mb-2'>age: 30 months</h5>
                 </div>
               </Col>

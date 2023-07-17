@@ -1,8 +1,12 @@
 import React from 'react';
+import Charts from './Admin/Users/chartsAdm';
+import d from './info.module.css'
+import Pending from './Admin/Users/pending';
 const Admin = () => {
     return (
-        <div>
-           Admin 
+        <div id={d.cont}>
+            <Charts/>
+            <Pending/>
         </div>
     );
 }

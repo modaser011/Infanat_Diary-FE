@@ -1,0 +1,128 @@
+.chat{
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin: 1rem 4rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 80vh;
+}
+
+.chat__left{
+    flex: 0.3;
+    background-color: #e8f2ff;
+    border-right: 1px solid gray;
+    padding: 1rem 0.5rem;
+    overflow: scroll;
+    position: relative;
+}
+
+.chat__left{
+    /* Set the width and height of the scroll bar */
+    scrollbar-width: thin;
+  }
+  
+  .chat__left::-webkit-scrollbar {
+    /* Customize the appearance of the scroll bar */
+    width: 8px;
+    background-color: #f1f1f1;
+  }
+  
+  .chat__left::-webkit-scrollbar-thumb {
+    /* Customize the appearance of the scroll thumb */
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .chat__left::-webkit-scrollbar-thumb:hover {
+    /* Customize the appearance of the scroll thumb on hover */
+    background-color: #555;
+  }
+  
+  .chat__left::-webkit-scrollbar-track {
+    /* Customize the appearance of the scroll track */
+    background-color: #f1f1f1;
+  }  
+
+.chat__left > form{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+}
+
+.chat__left > form > img{
+    object-fit: contain;
+    height: 1.2rem;
+    opacity: 0.4;
+    margin-right: 0.4rem;
+}
+
+.chat__left > form > input{
+    width: 100%;
+    border: none;
+}
+
+.chat__left > form > input:focus{
+    outline: none;
+}
+
+.chat__right{
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat__rightHeader{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    background-color: #e8f2ff;
+    flex: 0.1;
+}
+
+.chat__rightHeader > img{
+    margin: 1rem;
+    border: 1px solid gray;
+    object-fit: cover;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.chat__rightHeader > span{
+    font-size: 1.3rem;
+}
+
+.chat__rightInput{
+    flex: 0.15;
+    background-color: #e8f2ff;
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat__rightInputMessage{
+    height: 60%;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    flex: 0.9;
+}
+
+.chat__rightInputMessage:focus{
+    outline: none;
+}
+
+.chat__rightInput > button{
+    border: none;
+    background-color: #006AD4;
+    color: white;
+    border-radius: 0.3rem;
+    font-size: 18px;
+    padding: 0.23rem 0.5rem;
+}

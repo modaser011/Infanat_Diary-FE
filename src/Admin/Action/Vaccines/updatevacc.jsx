@@ -13,7 +13,7 @@ const Updatevacc = ({ details, id }) => {
   const [compulsory, setCompulsory] = useState(
     details.compulsory === "NO" ? "Elective" : "Mandatory"
   );
-  const [vals, setVals] = useState({
+    const [vals, setVals] = useState({
     name: details.name,
     dose: details.dose,
     age: details.age,
@@ -46,7 +46,7 @@ const Updatevacc = ({ details, id }) => {
             headers: {
               "Content-Type": "application/json",
               "Content-Type": "application/json",
-              token: `${data1.token}`,
+              token: `${localStorage.getItem('token')}`,
             },
           }
         )
@@ -148,33 +148,29 @@ const Updatevacc = ({ details, id }) => {
               </Form.Label>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicPassword"
-              id={d.coll2}
-            >
+            <Form.Group id={d.coll2}>
               <Form.Select
                 id={d.controlx}
                 aria-label="Default select example"
                 value={compulsory}
-                onChange={(e) =>
-                  setCompulsory(e.target.value === "Elective" ? "No" : "Yes")
-                }
+                onChange={(e) => setCompulsory(e.target.value)}
                 required
               >
                 <option value="" disabled>
                   Select Compalsory
                 </option>
-                <option value="Doctor">Mandatory</option>
-                <option value="Parent">Elective</option>
+                <option value="Mandatory">Mandatory</option>
+                <option value="Elective">Elective</option>
               </Form.Select>
+              <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Compalsory
+              </Form.Label>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicPassword"
-              id={d.coll2}
-            >
+            <Form.Group id={d.coll2}>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -182,28 +178,44 @@ const Updatevacc = ({ details, id }) => {
                 value={vals.reason}
                 name="reason"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+              <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Reason of taking vaccine
+              </Form.Label>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicPassword"
-              id={d.coll2}
-            >
+            <Form.Group id={d.coll2}>
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Enter side effect of taking this vaccine"
+                placeholder="Enter side effects of taking this vaccine"
                 value={vals.sideEffects}
                 name="sideEffects"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Side effects of taking vaccine
+              </Form.Label>
             </Form.Group>
 
             <Form.Group className="" id={d.coll2}>

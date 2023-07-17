@@ -13,41 +13,97 @@ import burger from "../assets/clipart282138.png";
 import { Button } from "react-bootstrap";
 import { vacBabyContext } from '../data/vacBabydata';
 import {useNavigate} from "react-router-dom";
-
-function MyNavbar({r}) {
+import { HospitalSide, parentSide } from "../data/SideData";
+import { adminSide } from "../data/SideData";
+import { DoctorSide } from "../data/SideData";
+function MyNavbar() {
 const data1 = useContext(vacBabyContext);
 const nav=useNavigate()
+console.log(data1.user)
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = (word) => {
+    if(word==='Logout')
+    {
+      data1.logout()
+    }
+    setShow(false);}
   const toggleShow = () => setShow((s) => !s);
-
-  const datax=r.map(({png,id,link},idx)=>(
-  <Link to={link} style={{textDecoration:'none'}}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
+  let datax=null
+if (data1.select==='parent')
+  {datax=parentSide.map(({png,id,link},idx)=>(
+  <Link to={link} style={{textDecoration:'none'}} key={idx}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
    className="mb-3 d-flex align-items-center" 
-   variant="primary" 
+   variant="primary"
    type="submit"
-   onClick={handleClose} 
-   id={d.buttun2}>
-    <img src={png} className="me-4" width="20" height="20" alt=""/>
+   onClick={()=>handleClose(id)} 
+      id={d.buttun2}>
+    <img src={png} className="me-4" width="30" height="30" alt=""/>
     <h4 style={{fontWeight:"600"}}>{id}</h4>        
     </button>
     </Link>
  )
+ )}
+  
+ if (data1.select==='admin')
+  {datax=adminSide.map(({png,id,link},idx)=>(
+  <Link to={link} style={{textDecoration:'none'}} key={idx}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
+   className="mb-3 d-flex align-items-center" 
+   variant="primary"
+   type="submit"
+   onClick={()=>handleClose(id)} 
+   id={d.buttun2}>
+    <img src={png} className="me-4" width="30" height="30" alt=""/>
+    <h4 style={{fontWeight:"600"}}>{id}</h4>        
+    </button>
+    </Link>
  )
-  return (
-    
+ )}
+ 
+ if (data1.select==='doctor')
+ {datax=DoctorSide.map(({png,id,link},idx)=>(
+ <Link to={link} style={{textDecoration:'none'}} key={idx}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
+  className="mb-3 d-flex align-items-center" 
+  variant="primary"
+  type="submit"
+  onClick={()=>handleClose(id)} 
+  id={d.buttun2}>
+   <img src={png} className="me-4" width="30" height="30" alt=""/>
+   <h4 style={{fontWeight:"600"}}>{id}</h4>        
+   </button>
+   </Link>
+)
+)}
+
+if (data1.select==='hospital')
+ {datax=HospitalSide.map(({png,id,link},idx)=>(
+ <Link to={link} style={{textDecoration:'none'}} key={idx}> <button style={{width:'100%',color:id==="Logout"?'red':'white', textDecoration:'none'}} key={idx} 
+  className="mb-3 d-flex align-items-center" 
+  variant="primary"
+  type="submit"
+  onClick={()=>handleClose(id)} 
+  id={d.buttun2}>
+   <img src={png} className="me-4" width="30" height="30" alt=""/>
+   <h4 style={{fontWeight:"600"}}>{id}</h4>        
+   </button>
+   </Link>
+)
+)}
+
+
+  return ( 
     <Navbar expand="lg" className="mb-md-0 sticky-top" id={d.cont} >   
       <Container>
         <div className="d-flex">
-       <button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
-      <img src={burger} width="20" height="20"
+        {(data1.token === null||data1.token === 'null')?<></>:(
+<button variant="primary"style={{border:"none" ,backgroundColor:'#006AD4'}}onClick={toggleShow} className="me-2">
+  <img src={burger} width="20" height="20"
               className="d-inline-block align-top" alt=""/>
-      </button> 
+      </button> )}
      <Fade left>
       <Offcanvas show={show} onHide={handleClose} scroll='true' id={d.offc}> 
         <Offcanvas.Body>
           <Offcanvas.Header className="justify-content-center text-center">
-           <Link to='/post' ><img src={logo} width="100" height="100" onClick={handleClose}
+           <Link to='/post' ><img src={logo} width="130" height="100" onClick={handleClose}
                alt=""/></Link>  
         </Offcanvas.Header>
          {datax}
@@ -64,17 +120,14 @@ const nav=useNavigate()
             navbarScroll>
           </Nav>
           {
-          data1.token === null ?(<>
-          <Link to="/RegisterParent"><Button id={d.btn} className="me-3 btn " variant="outline-light">Sign up</Button></Link>
-          <Link to="/user"><Button  id={d.btn} className="" variant="outline-light" >Login</Button></Link></>):<>
-          <Link to="/login"><Button id={d.btn} className="me-3 btn " variant="outline-light"  onClick={data1.logout}>log out</Button></Link>
-</>
+          (data1.token === null||data1.token === 'null')?(<>
+          <Link to="/selectRole"><Button id={d.btn} className="me-3 btn " variant="outline-light">Sign up</Button></Link>
+          <Link to="/user"><Button  id={d.btn} className="" variant="outline-light" >Login</Button></Link></>):
+          <Link to="/user"><Button id={d.btn} className="me-3 btn " variant="outline-light"  onClick={data1.logout}>log out</Button></Link>
   }            
-  
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
-
 export default MyNavbar;

@@ -13,13 +13,13 @@ const VaccineDetails = () => {
   const data1 = useContext(vacBabyContext);
   const nav=useNavigate()
   const ID=useParams()
-  console.log(data1.token)
+  console.log(localStorage.getItem('token'))
   const[details,setDetails]=useState({})
   const detailsVac=async()=>{
   await axios.get(`https://infant-diary-backend.onrender.com/api/v1/vaccine/${ID.id}`,{headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    token: `${data1.token}`,
+    token: `${localStorage.getItem('token')}`,
   },
 }).then(res=>{
     if(res.status === 200){
@@ -34,7 +34,7 @@ const VaccineDetails = () => {
     await axios.delete(`https://infant-diary-backend.onrender.com/api/v1/vaccine/${ID.id}`,{headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
-      token: `${data1.token}`,
+      token: `${localStorage.getItem('token')}`,
     },
   }).then(res=>{
       if(res.status === 200){
@@ -50,13 +50,13 @@ useEffect(() => {
 }, [data1.changeVacc])
 
   return (
-    <div className="vaccinedetails__container mx-start justify-content-center mx-auto ">
+    <div className="vaccinedetails__container justify-content-center mx-auto">
       {(Object.keys(details).length>=1)?<div className="vaccinedetails container bg-white">
         <div className="vaccinedetails__left">
           <img className="vaccinedetails__image" src={vaccine} alt="" />
         </div>
        
-        <div className="vaccinedetails__right d-block">
+        <div className="vaccinedetails__right d-block ms-lg-5">
           <h1 className="vaccinedetails__header">{details.name}</h1>
           <div>
             <div className="vaccinedetails__ageDoseComp">
@@ -79,6 +79,7 @@ useEffect(() => {
           </div>
           <br/>
           <div className="d-flex">
+            {data1.select==='admin'&&(<>
 <div className="mb-3"><Button onClick={deleteVacc} className="btn btn-danger mx-3"><img
                     src={delete1}
                     alt=""
@@ -86,8 +87,9 @@ useEffect(() => {
                     style={{ height: "18px", width: "18px", cursor: "pointer",marginTop:'-.2rem' }}
                   /> Remove</Button>
 
-</div><Updatevacc details={details} id={ID.id}/>
+</div><Updatevacc details={details} id={ID.id}/></>)}
 </div>
+            
         </div>
       </div>
       : <Spinner animation="border" role="status">

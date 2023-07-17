@@ -9,9 +9,6 @@ import axios from "axios";
 import { useContext } from "react";
 const AddBaby = () => {
   const userauth = useContext(vacBabyContext);
-  console.log("token : " + userauth.token);
-  console.log(userauth.mad);
-
   const [show, setShow] = useState(false);
   const [vals, setVals] = useState({
     name: "",
@@ -21,6 +18,17 @@ const AddBaby = () => {
     gender: "",
     height: "",
   });
+  const defultvalues=()=>
+  {
+    setVals({
+      name: "",
+      birthDate: "",
+      weight: "",
+      headDiameter: "",
+      gender: "",
+      height: "",
+    })
+  }
   const handleInput = (e) => {
     setVals((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -38,28 +46,36 @@ const AddBaby = () => {
     const validate = (e) => {
     e.preventDefault();
     const allVals=vals
-    const x=allVals.birthDate
-    allVals.birthDate=x.replaceAll('-','/')
+    const d=vals.birthDate
+    const rrr=vals.birthDate
+
     setErrors(AddBabyValidate(allVals));
     let xc = AddBabyValidate(allVals);
-    if(xc.name!=="")
-    {      vals.birthDate=vals.birthDate.replaceAll('/','-')
-  }
+
     if (xc.name === "") {
+      const parts = d.split("-");
+    const date = new Date(parts[0], parts[1] - 1, parts[2]);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();    
+    const formattedDate = `${day.toString().padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
+    allVals.birthDate=formattedDate
       var json = JSON.stringify(allVals);
-      vals.birthDate=vals.birthDate.replaceAll('/','-')
+      allVals.birthDate=rrr
+    vals.birthDate=rrr
       axios
         .post("https://infant-diary-backend.onrender.com/api/v1/child", json, {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${userauth.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         })
         .then((res) => {
           if (res.status === 200) {
             setShow(false);
-userauth.setChange(!userauth.change)      
+userauth.setChange(!userauth.change) 
+defultvalues()     
 } else {
             console.log(res.data.Error);
           }
@@ -199,14 +215,23 @@ userauth.setChange(!userauth.change)
                 onChange={handleInput}
                 required
               >
+                
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
                 <option value="" disabled>
                   Select Gender
                 </option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
               </Form.Select>
+              <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Gender
+              </Form.Label>
             </Form.Group>
 
+            
+            
             <Form.Group className="" id={d.coll2}>
               <button
                 className="mb-2 btn"

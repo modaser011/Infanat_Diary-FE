@@ -1,0 +1,31 @@
+.chatbody{
+    flex: 0.75;
+    padding: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+  
+  .chatbody::-webkit-scrollbar {
+    /* Customize the appearance of the scroll bar */
+    width: 8px;
+    background-color: #f1f1f1;
+  }
+  
+  .chatbody::-webkit-scrollbar-thumb {
+    /* Customize the appearance of the scroll thumb */
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .chatbody::-webkit-scrollbar-thumb:hover {
+    /* Customize the appearance of the scroll thumb on hover */
+    background-color: #555;
+  }
+  
+  .chatbody::-webkit-scrollbar-track {
+    /* Customize the appearance of the scroll track */
+    background-color: #f1f1f1;
+  }

@@ -1,26 +1,63 @@
-import React from 'react';
-        import Carousel from 'react-bootstrap/Carousel';
+import Carousel from 'react-bootstrap/Carousel';
+import './Slider.css';
+import sleep from './assets/sleep.jpg'
+import feed from './assets/fodd.jpg'
+import React, { useContext, useEffect, useState } from "react";
+import { vacBabyContext } from "./data/vacBabydata";
 
-const Slider = () => {
-    return (
-    <Carousel variant="dark">
-        
-      <Carousel.Item className='justify-content-center text-center m-auto'>
-        <img
-        src="4fc97261-28f4-40ac-8b34-ae996326af4d.png"
-          className="d-block justify-content-center text-center m-auto"
-          style={{}}
-          alt="First slide" 
-        />
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
+function Slider() {
+  const [index, setIndex] = useState(0);
+
+  const data1 = useContext(vacBabyContext);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  useEffect(() => {
+    data1.informationDetails();
+  }, []);
+
+  return (
+    <Carousel activeIndex={index}
+              onSelect={handleSelect}
+              nextIcon={<span aria-hidden="true" className="carousel-control-next-icon changed" />}
+              prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon changed" />}
+    >
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={feed}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h1 style={{color:"black"}}>Feeding</h1>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={feed}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>slide title</h3>
+            <p>slide subTitle</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={sleep}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>slide title</h3>
+            <p>slide subTitle</p>
+          </Carousel.Caption>
+        </Carousel.Item>
     </Carousel>
   );
 }
+
 export default Slider;
- 
-
-

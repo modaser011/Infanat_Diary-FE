@@ -2,18 +2,19 @@ import React from 'react';
 import d from './info.module.css'
 import Slider from './Slider';
 import Mybabies from './parent/Action/Children/Mybabies';
-import {vacBabyContext } from "./data/vacBabydata";
 import SliderDoctor from './parent/Action/Doctors/SliderDoctor';
-import { useContext } from 'react';
+import Faq from './parent/Action/FAQ/Faq';
+import HospSlider from './parent/Action/Hospitalsdetails/HospSlide';
 const Parent = () => {
-    const userauth=useContext(vacBabyContext)
-console.log("token =  "+ userauth.token)
+
 
     return (
         <div className='justify-content-center ' id={d.cont}>
           <Slider className='mb-2'/>
           <Mybabies/>
           <SliderDoctor/>
+          <HospSlider/>
+<Faq/>
         </div>
     );
 }

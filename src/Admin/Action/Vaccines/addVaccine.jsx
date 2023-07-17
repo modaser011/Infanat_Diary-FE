@@ -42,7 +42,7 @@ const AddVaccine = () => {
           {headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${data1.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         }
       )
@@ -58,7 +58,7 @@ const AddVaccine = () => {
     }
   };
   return (
-    <div className="mt-3 mb-3 text-center ">
+    <div className="mt-3 mb-3 text-end">
       <Button variant="primary" onClick={handleShow} id={d.btn2}>
         Add new Vaccine
       </Button>
@@ -110,7 +110,29 @@ const AddVaccine = () => {
                 Age
               </Form.Label>
             </Form.Group>
-
+            <Form.Group id={d.coll2}>
+              <Form.Select
+                id={d.controlx}
+                aria-label="Default select example"
+                value={compulsory}
+                onChange={(e) => setCompulsory(e.target.value)}
+                required
+              >
+                
+                <option value="Mandatory">Mandatory</option>
+                <option value="Elective">Elective</option>
+                <option disabled defaultChecked value=''>
+                  Select Compalsory
+                </option>
+              </Form.Select>
+              <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Compalsory
+              </Form.Label>
+            </Form.Group>
+            
             <Form.Group id={d.coll2}>
               <Form.Control
                 type="number"
@@ -132,23 +154,7 @@ const AddVaccine = () => {
               </Form.Label>
             </Form.Group>
 
-            <Form.Group className="mb-3" id={d.coll2}>
-              <Form.Select
-                id={d.controlx}
-                aria-label="Default select example"
-                value={compulsory}
-                onChange={(e) => setCompulsory(e.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  Select Compalsory
-                </option>
-                <option value="Mandatory">Mandatory</option>
-                <option value="Elective">Elective</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group className="mb-3" id={d.coll2}>
+            <Form.Group id={d.coll2}>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -156,24 +162,44 @@ const AddVaccine = () => {
                 value={vals.reason}
                 name="reason"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+              <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Reason of taking vaccine
+              </Form.Label>
             </Form.Group>
 
-            <Form.Group className="mb-3" id={d.coll2}>
+            <Form.Group id={d.coll2}>
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Enter side effect of taking this vaccine"
+                placeholder="Enter side effects of taking this vaccine"
                 value={vals.sideEffects}
                 name="sideEffects"
                 required
-                id={d.controlx}
+                id={d.controlx3}
                 onChange={handleInput}
                 x="true"
+                style={{height:'100px', 
+                  minHeight:'100px',  
+                  maxHeight:'100px',
+                resize:'none'}}
               />
+               <Form.Label
+                id={d.label}
+                class="form-control-placeholder transition"
+              >
+                Side effects of taking vaccine
+              </Form.Label>
             </Form.Group>
 
             <Form.Group className="" id={d.coll2}>

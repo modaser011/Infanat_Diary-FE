@@ -5,16 +5,12 @@ import edit from "../../../assets/edit.png";
 import d from "../Children/babies.module.css";
 import axios from "axios";
 import { vacBabyContext } from "../../../data/vacBabydata";
-import { useContext,useEffect } from "react";
+import { useContext } from "react";
 const EditPost = ({_id,body}) => {
   const userauth = useContext(vacBabyContext);
   const [show, setShow] = useState(false);
-  console.log(body)
-  useEffect(() => {
-    setVals(body);
-  }, [body]);
+ console.log(_id)
   const [vals, setVals] = useState({body:body});
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleInput = (e) => {
@@ -32,7 +28,7 @@ const EditPost = ({_id,body}) => {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${userauth.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         }
       )
@@ -77,7 +73,7 @@ const EditPost = ({_id,body}) => {
                 type="submit"
                 id={d.buttun}
               >
-                Add
+                Save
               </button>
               </Form.Group>
 

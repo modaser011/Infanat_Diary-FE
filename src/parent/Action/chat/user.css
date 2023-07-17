@@ -1,0 +1,38 @@
+.chatUser{
+    display: flex;
+    margin-top: 2rem;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.chatUser:hover{
+    background-color: whitesmoke;
+}
+
+.chatUser__image {
+    flex-shrink: 0;
+    border: 1px solid gray;
+    object-fit: cover;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+  }  
+
+.chatUser__details{
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-left: 1rem;
+}
+
+.chatUser__message{
+    overflow-wrap: anywhere;
+}
+
+.chatUser__timestamp{
+    margin-left: 0.5rem;
+    font-size: 14px;
+    font-weight: 700;
+}

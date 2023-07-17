@@ -1,6 +1,6 @@
-import {Container , Accordion,Col,Row,Form, Button} from 'react-bootstrap';  
+import {Container , Accordion,Col,Row,Form, Alert, Spinner} from 'react-bootstrap';  
 import d from "./Quistion.module.css";
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import { vacBabyContext } from '../../../data/vacBabydata';
 import AddQuistion from './AddQuistion';
 import delete1 from "../../../assets/delete.png";
@@ -8,9 +8,10 @@ import EditQuis from './EditQuis';
 import axios from 'axios';
 const QuistionAdmin = () => {
     const data1 = useContext(vacBabyContext);
+  const [keyword, setKeyword] = useState("");
   useEffect(() => {
-    data1.quisdetails();
-  }, [data1.changeQuis]);
+    data1.quisSearch(keyword);
+  }, [keyword,data1.changeQuis]);
 
   const deleteQuis = async (id) => {
     console.log(id)
@@ -19,7 +20,7 @@ const QuistionAdmin = () => {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
-          token: `${data1.token}`,
+          token: `${localStorage.getItem('token')}`,
         },
       })
       .then((res) => {
@@ -55,6 +56,8 @@ const QuistionAdmin = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
           </Col>
@@ -67,8 +70,8 @@ const QuistionAdmin = () => {
             {data1.qius.length >= 1 ? ( 
            data1.qius.map(({body,answer,age,virusName,_id}, idx) =>
            
-            <Accordion defaultActiveKey="0" key={idx} className='mb-2'>
-      <Accordion.Item eventKey="0">
+            <Accordion defaultActiveKey="0" key={_id} className='mb-2'>
+      <Accordion.Item eventKey={idx}>
         <Accordion.Header className='me-auto d-flex justify-content-between'> 
         
           <div style={{overflowWrap: "anywhere" }}>
@@ -97,7 +100,17 @@ const QuistionAdmin = () => {
                 </div>
         </Accordion.Body>
       </Accordion.Item>
-    </Accordion>)):<></>}           
+    </Accordion>)):<></>}  
+    {data1.qius.length === 0 && data1.qiusloud && (
+            <div className="my-5 mx-auto text-center">
+            <Spinner animation="border" className="my-5 mx-auto" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            </div>
+          )}
+          {data1.qius.length === 0 && !data1.qiusloud && (
+            <Alert variant="warning"> There is no hospital </Alert>
+          )}         
           </Col>
         </Row>
       </Container>

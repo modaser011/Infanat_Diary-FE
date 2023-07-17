@@ -8,42 +8,24 @@ import { vacBabyContext } from "../../../data/vacBabydata";
 import axios from "axios";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-const EditBaby = () => {
+const EditBaby = ({details}) => {
   const userauth = useContext(vacBabyContext);
   const ID = useParams();
-  console.log(ID.id);
+ const [show, setShow] = useState(false);
 
-  const [details, setDetails] = useState({});
-  const detailsVac = async () => {
-    await axios
-      .get(
-        `https://infant-diary-backend.onrender.com/api/v1/child/${ID.id}`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-            token: `${userauth.token}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          setDetails(res.data.document);
-        } else {
-          alert(res.data.Error);
-        }
-      });
-  };
-const [show, setShow] = useState(false);
+  const r=details.birthDate
+  const parts = r.split("/");
+  const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  console.log(formattedDate)
   const [vals, setVals] = useState({
-    name: d,
-    birthDate:details.birthDate===undefined?'aa':details.birthDate.replaceAll('/','-'),
-    weight: details.weight,
-    headDiameter: details.headDiameter,
+    birthDate:formattedDate,
+    name: details.name,
+    weight:details.measurements[0].weight,
+    headDiameter:details.measurements[0].headDiameter,
     gender: details.gender,
-    height: details.height,
+    height:details.measurements[0].height
   });
+  console.log(vals.birthDate)
   const handleInput = (e) => {
     setVals((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -57,23 +39,33 @@ const [show, setShow] = useState(false);
     day = today.getDate() <= 9 ? "0" + (today.getDate() + 1) : today.getDate(),
     date = today.getFullYear() + "-" + mon + "-" + day,
     last = today.getFullYear() - 3 + "-" + mon + "-" + day;
-    useEffect(() => {
-        detailsVac();
-      }, [show]);
-    const validate = (e) => {
+
+     const validate = (e) => {
     e.preventDefault();
     const allVals=vals      
     setErrors(AddBabyValidate(allVals));
     let xc = AddBabyValidate(allVals);
+    const d=vals.birthDate
+    const rrr=vals.birthDate
     if (xc.name === "") {
+      const parts = d.split("-");
+      const date = new Date(parts[0], parts[1] - 1, parts[2]);
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();    
+      const formattedDate = `${day.toString().padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
+      allVals.birthDate=formattedDate
+
+      console.log(formattedDate)
       var json = JSON.stringify(allVals);
-      allVals.birthDate=allVals.birthDate.replaceAll('/','-')
+      allVals.birthDate=rrr
+      vals.birthDate=rrr
       axios
         .put(`https://infant-diary-backend.onrender.com/api/v1/child/${ID.id}`, json, {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${userauth.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         })
         .then((res) => {
@@ -88,15 +80,6 @@ userauth.setChange(!userauth.change)
     }
   };
   const handleShow = () => {setShow(true)
-    const birth=details.birthDate.replaceAll('/','-')
-    setVals({
-        name: details.name,
-        birthDate:birth,
-        weight: details.weight,
-        headDiameter: details.headDiameter,
-        gender: details.gender,
-        height: details.height,
-      });
 };
   return (
     <div className="mb-3 text-center ">
@@ -246,7 +229,7 @@ userauth.setChange(!userauth.change)
                 type="submit"
                 id={d.buttun}
               >
-                update
+                Save
               </button>
             </Form.Group>
           </Form>

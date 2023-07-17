@@ -29,7 +29,7 @@ const AddPost = () => {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
-            token: `${userauth.token}`,
+            token: `${localStorage.getItem('token')}`,
           },
         }
       )
@@ -37,6 +37,7 @@ const AddPost = () => {
         if (res.status === 200) {
           setShow(false);
           userauth.setChangePost(!userauth.changePost)
+          setVals({body:""})
         } else {
           console.log(res.data.Error);
         }
@@ -68,6 +69,18 @@ const AddPost = () => {
                 x="true"
               />
             </Form.Group>
+            {/* <Form.Group className="mb-2" id={d.coll5}>
+              <Form.Control
+                 type="file"
+                 size="lg"
+                 id={d.file}
+                 required
+                 x="true"
+                 style={{ textAlign: "start" }}
+                 onChange={(e) => setnationalIdPhoto(e.target.files[0])}
+              />
+              <Form.Label id={d.label5}>NationalId photo</Form.Label>
+              </Form.Group> */}
             <Form.Group className="" id={d.coll2}>
               <button
                 className="mb-2 btn"
